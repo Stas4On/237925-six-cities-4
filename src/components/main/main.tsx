@@ -1,7 +1,8 @@
 import * as React from "react";
 
 interface Props {
-  numberRentalOffers: number
+  numberRentalOffers: number;
+  offerNames: string[];
 }
 
 const Main = (props: Props) => {
@@ -96,14 +97,13 @@ const Main = (props: Props) => {
                 */}
             </form>
             <div className="cities__places-list places__list tabs__content">
-              <article className="cities__place-card place-card">
+              {props.offerNames.map((name) => <article key={name} className="cities__place-card place-card">
                 <div className="place-card__mark">
                   <span>Premium</span>
                 </div>
                 <div className="cities__image-wrapper place-card__image-wrapper">
                   <a href="#">
-                    <img className="place-card__image" src="img/apartment-01.jpg" width={260} height={200}
-                         alt="Place image"/>
+                    <img className="place-card__image" src="img/apartment-01.jpg" width={260} height={200} alt="Place image"/>
                   </a>
                 </div>
                 <div className="place-card__info">
@@ -126,12 +126,12 @@ const Main = (props: Props) => {
                     </div>
                   </div>
                   <h2 className="place-card__name">
-                    <a href="#">Beautiful &amp; luxurious apartment at great location</a>
+                    <a href="#">{name}</a>
                   </h2>
                   <p className="place-card__type">Apartment</p>
                 </div>
-              </article>
-              <article className="cities__place-card place-card">
+              </article>)}
+              {/* <article className="cities__place-card place-card">
                 <div className="cities__image-wrapper place-card__image-wrapper">
                   <a href="#">
                     <img className="place-card__image" src="img/room.jpg" width={260} height={200} alt="Place image"/>
@@ -143,8 +143,7 @@ const Main = (props: Props) => {
                       <b className="place-card__price-value">€80</b>
                       <span className="place-card__price-text">/&nbsp;night</span>
                     </div>
-                    <button className="place-card__bookmark-button place-card__bookmark-button--active button"
-                            type="button">
+                    <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
                       <svg className="place-card__bookmark-icon" width={18} height={19}>
                         <use xlinkHref="#icon-bookmark"/>
                       </svg>
@@ -166,8 +165,7 @@ const Main = (props: Props) => {
               <article className="cities__place-card place-card">
                 <div className="cities__image-wrapper place-card__image-wrapper">
                   <a href="#">
-                    <img className="place-card__image" src="img/apartment-02.jpg" width={260} height={200}
-                         alt="Place image"/>
+                    <img className="place-card__image" src="img/apartment-02.jpg" width={260} height={200} alt="Place image"/>
                   </a>
                 </div>
                 <div className="place-card__info">
@@ -201,8 +199,7 @@ const Main = (props: Props) => {
                 </div>
                 <div className="cities__image-wrapper place-card__image-wrapper">
                   <a href="#">
-                    <img className="place-card__image" src="img/apartment-03.jpg" width={260} height={200}
-                         alt="Place image"/>
+                    <img className="place-card__image" src="img/apartment-03.jpg" width={260} height={200} alt="Place image"/>
                   </a>
                 </div>
                 <div className="place-card__info">
@@ -242,8 +239,7 @@ const Main = (props: Props) => {
                       <b className="place-card__price-value">€80</b>
                       <span className="place-card__price-text">/&nbsp;night</span>
                     </div>
-                    <button className="place-card__bookmark-button place-card__bookmark-button--active button"
-                            type="button">
+                    <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
                       <svg className="place-card__bookmark-icon" width={18} height={19}>
                         <use xlinkHref="#icon-bookmark-active"/>
                       </svg>
@@ -261,7 +257,7 @@ const Main = (props: Props) => {
                   </h2>
                   <p className="place-card__type">Private room</p>
                 </div>
-              </article>
+              </article> */}
             </div>
           </section>
           <div className="cities__right-section">
