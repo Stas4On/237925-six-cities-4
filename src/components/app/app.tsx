@@ -2,7 +2,7 @@ import * as React from "react";
 import Main from "../main/main";
 
 interface Props {
-  numberRentalOffers: number
+  numberRentalOffers: number;
 }
 const App = (props: Props) => {
   return (
