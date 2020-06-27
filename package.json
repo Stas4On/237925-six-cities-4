@@ -6,22 +6,34 @@
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack-dev-server",
-    "eslint": "eslint --ext .jsx --ext .js src/",
+    "eslint": "npm run eslint.js && npm run eslint.ts",
+    "eslint.js": "eslint --ext .jsx --ext .js src/",
+    "eslint.ts": "eslint --config .eslintrc-ts.yml --ext .tsx src/",
     "test": "npm run eslint"
   },
   "devDependencies": {
     "@babel/core": "7.10.3",
     "@babel/preset-env": "7.10.3",
     "@babel/preset-react": "7.10.1",
+    "@types/react": "16.9.41",
+    "@typescript-eslint/eslint-plugin": "3.4.0",
+    "@typescript-eslint/parser": "3.4.0",
     "babel-loader": "8.1.0",
     "eslint": "5.13.0",
     "eslint-config-htmlacademy": "0.5.2",
     "eslint-plugin-react": "7.20.0",
+    "ts-loader": "7.0.5",
+    "typescript": "3.9.5",
+    "utility-types": "3.10.0",
     "webpack": "4.43.0",
     "webpack-cli": "3.3.12",
     "webpack-dev-server": "3.11.0"
   },
   "engines": {
     "node": "10"
+  },
+  "dependencies": {
+    "react": "16.13.1",
+    "react-dom": "16.13.1"
   }
 }
