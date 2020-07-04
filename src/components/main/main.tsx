@@ -1,11 +1,15 @@
 import * as React from "react";
+import OffersList from "../card-list/card-list";
+import {OfferCardModel} from "../../models";
 
 interface Props {
   numberRentalOffers: number;
-  offerNames: string[];
+  offers: OfferCardModel[];
+  onTitleCardClick: (offerId) => void;
 }
 
-const Main = (props: Props) => {
+const Main: React.FunctionComponent<Props> = (props: Props) => {
+  const {numberRentalOffers, offers, onTitleCardClick} = props;
   return <div className="page page--gray page--main">
     <header className="header">
       <div className="container">
@@ -71,8 +75,7 @@ const Main = (props: Props) => {
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            {/* eslint-disable-next-line react/prop-types */}
-            <b className="places__found">{props.numberRentalOffers} places to stay in Amsterdam</b>
+            <b className="places__found">{numberRentalOffers} places to stay in Amsterdam</b>
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by</span>
               <span className="places__sorting-type" tabIndex={0}>
@@ -96,7 +99,11 @@ const Main = (props: Props) => {
                 </select>
                 */}
             </form>
-            <div className="cities__places-list places__list tabs__content">
+            <OffersList
+              offers={offers}
+              onTitleCardClick={onTitleCardClick}
+            />
+            {/* <div className="cities__places-list places__list tabs__content">
               {props.offerNames.map((name) => <article key={name} className="cities__place-card place-card">
                 <div className="place-card__mark">
                   <span>Premium</span>
@@ -131,7 +138,7 @@ const Main = (props: Props) => {
                   <p className="place-card__type">Apartment</p>
                 </div>
               </article>)}
-              {/* <article className="cities__place-card place-card">
+               <article className="cities__place-card place-card">
                 <div className="cities__image-wrapper place-card__image-wrapper">
                   <a href="#">
                     <img className="place-card__image" src="img/room.jpg" width={260} height={200} alt="Place image"/>
@@ -257,8 +264,8 @@ const Main = (props: Props) => {
                   </h2>
                   <p className="place-card__type">Private room</p>
                 </div>
-              </article> */}
-            </div>
+              </article>
+            </div> */}
           </section>
           <div className="cities__right-section">
             <section className="cities__map map"/>
