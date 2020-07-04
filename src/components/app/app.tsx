@@ -1,14 +1,17 @@
 import * as React from "react";
 import Main from "../main/main";
+import {OfferCardModel} from "../../models";
 
 interface Props {
   numberRentalOffers: number;
-  offerNames: string[];
+  offers: OfferCardModel[];
 }
-const App = (props: Props) => {
+const App: React.FunctionComponent<Props> = (props: Props) => {
+  const titleLinkHandler = () => {};
+
   return (
     <React.Fragment>
-      <Main numberRentalOffers={props.numberRentalOffers} offerNames={props.offerNames}/>
+      <Main numberRentalOffers={props.numberRentalOffers} offers={props.offers} onTitleCardClick={titleLinkHandler}/>
     </React.Fragment>
   );
 };
