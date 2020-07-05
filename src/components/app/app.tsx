@@ -1,12 +1,17 @@
 import * as React from "react";
+import {connect} from "react-redux";
 import Main from "../main/main";
 import {OfferModel} from "../../models";
 import OfferDetails from "../offer-details/offer-details";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
+import {ActionCreator} from "../../reducer/reducer";
 
 interface Props {
   numberRentalOffers: number;
   offers: OfferModel[];
+  currentCity: string;
+  cities: string[];
+  onChangeCity: (city: string) => void;
 }
 
 interface State {
@@ -28,16 +33,18 @@ class App extends React.PureComponent<Props, State> {
   }
 
   private _renderApp() {
-    const {numberRentalOffers, offers} = this.props;
+    const {offers, currentCity, cities, onChangeCity} = this.props;
 
     if (this.state.activeOffer) {
-      return <OfferDetails id={this.state.activeOffer} offers={offers} />;
+      return <OfferDetails id={this.state.activeOffer} offers={offers}/>;
     }
 
     return <Main
-      numberRentalOffers={numberRentalOffers}
+      onChangeCity={onChangeCity}
       offers={offers}
       onTitleCardClick={this._handleOfferTitleClick}
+      currentCity={currentCity}
+      cities={cities}
     />;
   }
 
@@ -59,4 +66,17 @@ class App extends React.PureComponent<Props, State> {
   }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => ({
+  onChangeCity(city) {
+    dispatch(ActionCreator.changeCity(city));
+  }
+});
+
+const mapStateToProps = (state) => ({
+  currentCity: state.currentCity,
+  offers: state.offers,
+  cities: state.cities
+});
+
+export {App};
+export default connect(mapStateToProps, mapDispatchToProps)(App);

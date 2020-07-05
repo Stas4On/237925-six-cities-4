@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<App /> should render <Main /> 1`] = `
+exports[`<App /> should render correctly 1`] = `
 <div
   className="page page--gray page--main"
 >
@@ -77,8 +77,9 @@ exports[`<App /> should render <Main /> 1`] = `
             className="locations__item"
           >
             <a
-              className="locations__item-link tabs__item"
+              className=" locations__item-link tabs__item"
               href="#"
+              onClick={[Function]}
             >
               <span>
                 Paris
@@ -89,8 +90,9 @@ exports[`<App /> should render <Main /> 1`] = `
             className="locations__item"
           >
             <a
-              className="locations__item-link tabs__item"
+              className=" locations__item-link tabs__item"
               href="#"
+              onClick={[Function]}
             >
               <span>
                 Cologne
@@ -101,8 +103,9 @@ exports[`<App /> should render <Main /> 1`] = `
             className="locations__item"
           >
             <a
-              className="locations__item-link tabs__item"
+              className=" locations__item-link tabs__item"
               href="#"
+              onClick={[Function]}
             >
               <span>
                 Brussels
@@ -113,7 +116,9 @@ exports[`<App /> should render <Main /> 1`] = `
             className="locations__item"
           >
             <a
-              className="locations__item-link tabs__item tabs__item--active"
+              className=" locations__item-link tabs__item"
+              href="#"
+              onClick={[Function]}
             >
               <span>
                 Amsterdam
@@ -124,8 +129,9 @@ exports[`<App /> should render <Main /> 1`] = `
             className="locations__item"
           >
             <a
-              className="locations__item-link tabs__item"
+              className=" locations__item-link tabs__item"
               href="#"
+              onClick={[Function]}
             >
               <span>
                 Hamburg
@@ -136,8 +142,9 @@ exports[`<App /> should render <Main /> 1`] = `
             className="locations__item"
           >
             <a
-              className="locations__item-link tabs__item"
+              className=" locations__item-link tabs__item"
               href="#"
+              onClick={[Function]}
             >
               <span>
                 Dusseldorf
@@ -164,8 +171,8 @@ exports[`<App /> should render <Main /> 1`] = `
           <b
             className="places__found"
           >
-            56
-             places to stay in Amsterdam
+            4
+             places to stay in 
           </b>
           <form
             action="#"
@@ -226,6 +233,8 @@ exports[`<App /> should render <Main /> 1`] = `
           >
             <article
               className="cities__place-card place-card"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
               <div
                 className="place-card__mark"
@@ -244,7 +253,7 @@ exports[`<App /> should render <Main /> 1`] = `
                     alt="Place image"
                     className="place-card__image"
                     height={200}
-                    src="img/apartment-01.jpg"
+                    src="img/room.jpg"
                     width={260}
                   />
                 </a>
@@ -261,7 +270,8 @@ exports[`<App /> should render <Main /> 1`] = `
                     <b
                       className="place-card__price-value"
                     >
-                      €120
+                      €
+                      120
                     </b>
                     <span
                       className="place-card__price-text"
@@ -313,28 +323,25 @@ exports[`<App /> should render <Main /> 1`] = `
                   className="place-card__name"
                 >
                   <a
+                    className="place-card__name-link"
                     href="#"
+                    onClick={[Function]}
                   >
-                    Beautiful & luxurious apartment at great location
+                    Beautiful &amp; luxurious apartment at great location
                   </a>
                 </h2>
                 <p
                   className="place-card__type"
                 >
-                  Apartment
+                  apartment
                 </p>
               </div>
             </article>
             <article
               className="cities__place-card place-card"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
-              <div
-                className="place-card__mark"
-              >
-                <span>
-                  Premium
-                </span>
-              </div>
               <div
                 className="cities__image-wrapper place-card__image-wrapper"
               >
@@ -345,7 +352,7 @@ exports[`<App /> should render <Main /> 1`] = `
                     alt="Place image"
                     className="place-card__image"
                     height={200}
-                    src="img/apartment-01.jpg"
+                    src="img/room.jpg"
                     width={260}
                   />
                 </a>
@@ -362,7 +369,8 @@ exports[`<App /> should render <Main /> 1`] = `
                     <b
                       className="place-card__price-value"
                     >
-                      €120
+                      €
+                      80
                     </b>
                     <span
                       className="place-card__price-text"
@@ -414,7 +422,9 @@ exports[`<App /> should render <Main /> 1`] = `
                   className="place-card__name"
                 >
                   <a
+                    className="place-card__name-link"
                     href="#"
+                    onClick={[Function]}
                   >
                     Wood and stone place
                   </a>
@@ -422,7 +432,212 @@ exports[`<App /> should render <Main /> 1`] = `
                 <p
                   className="place-card__type"
                 >
-                  Apartment
+                  private room
+                </p>
+              </div>
+            </article>
+            <article
+              className="cities__place-card place-card"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+            >
+              <div
+                className="cities__image-wrapper place-card__image-wrapper"
+              >
+                <a
+                  href="#"
+                >
+                  <img
+                    alt="Place image"
+                    className="place-card__image"
+                    height={200}
+                    src="img/room.jpg"
+                    width={260}
+                  />
+                </a>
+              </div>
+              <div
+                className="place-card__info"
+              >
+                <div
+                  className="place-card__price-wrapper"
+                >
+                  <div
+                    className="place-card__price"
+                  >
+                    <b
+                      className="place-card__price-value"
+                    >
+                      €
+                      132
+                    </b>
+                    <span
+                      className="place-card__price-text"
+                    >
+                      / night
+                    </span>
+                  </div>
+                  <button
+                    className="place-card__bookmark-button button"
+                    type="button"
+                  >
+                    <svg
+                      className="place-card__bookmark-icon"
+                      height={19}
+                      width={18}
+                    >
+                      <use
+                        xlinkHref="#icon-bookmark"
+                      />
+                    </svg>
+                    <span
+                      className="visually-hidden"
+                    >
+                      To bookmarks
+                    </span>
+                  </button>
+                </div>
+                <div
+                  className="place-card__rating rating"
+                >
+                  <div
+                    className="place-card__stars rating__stars"
+                  >
+                    <span
+                      style={
+                        Object {
+                          "width": "40%",
+                        }
+                      }
+                    />
+                    <span
+                      className="visually-hidden"
+                    >
+                      Rating
+                    </span>
+                  </div>
+                </div>
+                <h2
+                  className="place-card__name"
+                >
+                  <a
+                    className="place-card__name-link"
+                    href="#"
+                    onClick={[Function]}
+                  >
+                    Canal View Prinsengracht
+                  </a>
+                </h2>
+                <p
+                  className="place-card__type"
+                >
+                  apartment
+                </p>
+              </div>
+            </article>
+            <article
+              className="cities__place-card place-card"
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+            >
+              <div
+                className="place-card__mark"
+              >
+                <span>
+                  Premium
+                </span>
+              </div>
+              <div
+                className="cities__image-wrapper place-card__image-wrapper"
+              >
+                <a
+                  href="#"
+                >
+                  <img
+                    alt="Place image"
+                    className="place-card__image"
+                    height={200}
+                    src="img/room.jpg"
+                    width={260}
+                  />
+                </a>
+              </div>
+              <div
+                className="place-card__info"
+              >
+                <div
+                  className="place-card__price-wrapper"
+                >
+                  <div
+                    className="place-card__price"
+                  >
+                    <b
+                      className="place-card__price-value"
+                    >
+                      €
+                      180
+                    </b>
+                    <span
+                      className="place-card__price-text"
+                    >
+                      / night
+                    </span>
+                  </div>
+                  <button
+                    className="place-card__bookmark-button button"
+                    type="button"
+                  >
+                    <svg
+                      className="place-card__bookmark-icon"
+                      height={19}
+                      width={18}
+                    >
+                      <use
+                        xlinkHref="#icon-bookmark"
+                      />
+                    </svg>
+                    <span
+                      className="visually-hidden"
+                    >
+                      To bookmarks
+                    </span>
+                  </button>
+                </div>
+                <div
+                  className="place-card__rating rating"
+                >
+                  <div
+                    className="place-card__stars rating__stars"
+                  >
+                    <span
+                      style={
+                        Object {
+                          "width": "100%",
+                        }
+                      }
+                    />
+                    <span
+                      className="visually-hidden"
+                    >
+                      Rating
+                    </span>
+                  </div>
+                </div>
+                <h2
+                  className="place-card__name"
+                >
+                  <a
+                    className="place-card__name-link"
+                    href="#"
+                    onClick={[Function]}
+                  >
+                    Nice, cozy, warm big bed apartment
+                  </a>
+                </h2>
+                <p
+                  className="place-card__type"
+                >
+                  apartment
                 </p>
               </div>
             </article>
@@ -433,7 +648,16 @@ exports[`<App /> should render <Main /> 1`] = `
         >
           <section
             className="cities__map map"
-          />
+          >
+            <div
+              id="map"
+              style={
+                Object {
+                  "height": "100%",
+                }
+              }
+            />
+          </section>
         </div>
       </div>
     </div>

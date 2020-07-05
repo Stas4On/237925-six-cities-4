@@ -1,16 +1,29 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import configureStore from "redux-mock-store";
+import {Provider} from "react-redux";
+import {cities, testOffers} from "../../mocks/test-mocks";
 import App from "./app";
 
-const NUMBER_OFFERS = 56;
-const OFFER_NAMES = [`Beautiful & luxurious apartment at great location`, `Wood and stone place`];
+const mockStore = configureStore([]);
 
-it(`<App /> should render <Main />`, () => {
+it(`<App /> should render correctly`, () => {
+  const store = mockStore({
+    offers: testOffers,
+    city: cities[0],
+    cities
+  });
   const tree = renderer
-    .create(<App
-      numberRentalOffers={NUMBER_OFFERS}
-      offerNames={OFFER_NAMES}
-    />).toJSON();
+    .create(
+        <Provider store={store}>
+          <App
+            onChangeCity = {() => {}}
+            onTitleCardClick={() => {}}
+            city = {cities[0]}
+            cities={cities}
+            offers = {testOffers}
+          />
+        </Provider>).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

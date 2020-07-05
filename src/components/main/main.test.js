@@ -1,15 +1,16 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import {cities, testOffers} from "../../mocks/test-mocks";
 import Main from "./main";
-
-const NUMBER_OFFERS = 56;
-const OFFER_NAMES = [`Beautiful & luxurious apartment at great location`, `Wood and stone place`];
 
 it(`<Main /> should render cards offers`, () => {
   const tree = renderer
     .create(<Main
-      numberRentalOffers={NUMBER_OFFERS}
-      offerNames = {OFFER_NAMES}
+      onChangeCity = {() => {}}
+      offers={testOffers}
+      onTitleCardClick={() => {}}
+      city = {cities[0]}
+      cities={cities}
     />).toJSON();
 
   expect(tree).toMatchSnapshot();

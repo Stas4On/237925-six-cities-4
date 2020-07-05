@@ -1,6 +1,6 @@
 import {OfferModel} from "../models";
 
-export const OFFERS: OfferModel[] = [
+export const testOffers: OfferModel[] = [
   {
     city: {
       name: `Paris`,
@@ -105,4 +105,13 @@ export const OFFERS: OfferModel[] = [
     premium: true,
     id: 1
   }
+];
+
+export const cities = [
+  `Paris`,
+  `Cologne`,
+  `Brussels`,
+  `Amsterdam`,
+  `Hamburg`,
+  `Dusseldorf`
 ];
