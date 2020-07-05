@@ -1,5 +1,5 @@
 import * as React from "react";
-import OffersList from "../card-list/card-list";
+import OffersList from "../offers-list/offers-list";
 import {OfferCardModel} from "../../models";
 
 interface Props {

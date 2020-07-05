@@ -8,13 +8,21 @@ interface Props {
   onTitleCardClick: (offerId) => void;
 }
 
-export class OffersList extends PureComponent<Props> {
+interface State {
+  activeOffer: number;
+}
+
+class OffersList extends PureComponent<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
       activeOffer: null
     };
-    this.handleFocusChange = this.handleFocusChange.bind(this);
+    this._handleFocusChange = this._handleFocusChange.bind(this);
+  }
+
+  private _handleFocusChange(activeOffer) {
+    this.setState(() => ({activeOffer}));
   }
 
   render() {
@@ -22,13 +30,9 @@ export class OffersList extends PureComponent<Props> {
 
     return (
       <div className="cities__places-list places__list tabs__content">
-        {offers.map((card) => <OfferCard key={card.id} offerCard={card} onTitleCardClick={onTitleCardClick} onFocus={this.handleFocusChange}/>)}
+        {offers.map((card) => <OfferCard key={card.id} offerCard={card} onTitleCardClick={onTitleCardClick} onFocus={this._handleFocusChange}/>)}
       </div>
     );
-  }
-
-  handleFocusChange(activeOffer) {
-    this.setState(() => ({activeOffer}));
   }
 }
 
