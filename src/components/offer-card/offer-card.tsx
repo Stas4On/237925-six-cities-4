@@ -1,8 +1,8 @@
 import * as React from "react";
-import {OfferCardModel} from "../../models";
+import {OfferModel} from "../../models";
 
 interface Props {
-  offerCard: OfferCardModel;
+  offerCard: OfferModel;
   onFocus: (offerId) => void;
   onTitleCardClick: (offerId) => void;
 }

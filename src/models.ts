@@ -9,7 +9,7 @@ export interface Offer {
   type: OfferType
 }
 
-export interface OfferCardModel {
+export interface OfferModel {
   city: City,
   name: string,
   price: number,

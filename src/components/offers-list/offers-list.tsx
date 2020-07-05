@@ -1,10 +1,10 @@
 import * as React from "react";
 import {PureComponent} from "react";
 import OfferCard from "../offer-card/offer-card";
-import {OfferCardModel} from "../../models";
+import {OfferModel} from "../../models";
 
 interface Props {
-  offers: OfferCardModel[];
+  offers: OfferModel[];
   onTitleCardClick: (offerId) => void;
 }
 

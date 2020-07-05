@@ -1,12 +1,12 @@
 import * as React from "react";
 import Main from "../main/main";
-import {OfferCardModel} from "../../models";
+import {OfferModel} from "../../models";
 import OfferDetails from "../offer-details/offer-details";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 
 interface Props {
   numberRentalOffers: number;
-  offers: OfferCardModel[];
+  offers: OfferModel[];
 }
 
 interface State {
