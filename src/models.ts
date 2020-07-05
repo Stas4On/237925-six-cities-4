@@ -29,7 +29,7 @@ export interface OfferModel {
   id: number
 }
 
-interface City {
+export interface City {
   name: string,
   location: Location
 }

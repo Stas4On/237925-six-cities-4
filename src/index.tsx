@@ -1,13 +1,25 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import App from "./components/app/app";
-import {OFFERS} from "./mocks/offers";
-
-const NUMBER_OFFERS = 56;
+import {applyMiddleware, createStore} from "redux";
+import {Provider} from "react-redux";
+import {ActionCreator, reducer} from "./reducer/reducer";
+import {composeWithDevTools} from "redux-devtools-extension";
 
 const init = () => {
+  const store = createStore(
+      reducer,
+      composeWithDevTools(
+          applyMiddleware()
+      )
+  );
+
+  store.dispatch(ActionCreator.loadOffers());
+
   ReactDOM.render(
-      <App numberRentalOffers={NUMBER_OFFERS} offers={OFFERS}/>,
+      <Provider store={store}>
+        <App/>
+      </Provider>,
       document.getElementById(`root`)
   );
 };

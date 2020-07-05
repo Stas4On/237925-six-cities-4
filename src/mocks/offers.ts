@@ -1,4 +1,6 @@
-export const OFFERS = [
+import {OfferModel} from "../models";
+
+export const OFFERS: OfferModel[] = [
   {
     city: {
       name: `Paris`,
