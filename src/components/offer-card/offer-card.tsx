@@ -14,11 +14,11 @@ class OfferCard extends React.PureComponent<Props> {
     this._handleTitleClick = this._handleTitleClick.bind(this);
   }
 
-  _handleFocus(offerId) {
+  private _handleFocus(offerId) {
     this.props.onFocus(offerId);
   }
 
-  _handleTitleClick() {
+  private _handleTitleClick() {
     this.props.onTitleCardClick(this.props.offerCard.id);
   }
 
