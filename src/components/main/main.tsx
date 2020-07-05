@@ -1,10 +1,11 @@
 import * as React from "react";
 import OffersList from "../offers-list/offers-list";
-import {OfferCardModel} from "../../models";
+import {OfferModel} from "../../models";
+import Map from "../map/map";
 
 interface Props {
   numberRentalOffers: number;
-  offers: OfferCardModel[];
+  offers: OfferModel[];
   onTitleCardClick: (offerId) => void;
 }
 
@@ -268,7 +269,11 @@ const Main: React.FunctionComponent<Props> = (props: Props) => {
             </div> */}
           </section>
           <div className="cities__right-section">
-            <section className="cities__map map"/>
+            <section className="cities__map map">
+              <Map
+                offers={offers}
+              />
+            </section>
           </div>
         </div>
       </div>

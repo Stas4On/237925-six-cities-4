@@ -1,8 +1,8 @@
 import * as React from "react";
-import {OfferCardModel} from "../../models";
+import {OfferModel} from "../../models";
 
 interface Props {
-  offers: OfferCardModel[];
+  offers: OfferModel[];
   id: number;
 }
 
