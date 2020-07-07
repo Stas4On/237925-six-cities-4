@@ -2,20 +2,20 @@ import * as React from "react";
 import * as leaflet from "leaflet";
 import {PureComponent} from "react";
 import {OfferModel} from "../../models";
-import {Icon, LatLngExpression, LayerGroup, Map, PointExpression} from "leaflet";
+import {Icon, LatLngExpression, LayerGroup, Map} from "leaflet";
 
 interface Props {
   offers: OfferModel[];
+  activeOfferId: number;
 }
 
 class CityMap extends PureComponent<Props> {
-  private readonly icon: Icon;
+  private readonly defaultIcon: Icon;
+  private readonly activeIcon: Icon;
   private readonly mapRef: React.RefObject<HTMLDivElement>;
   private mapConf: {
     city: LatLngExpression;
-    iconSize: PointExpression;
     zoom: number;
-    iconUrl: string;
   };
   private map: Map;
   private layerGroup: LayerGroup;
@@ -25,15 +25,17 @@ class CityMap extends PureComponent<Props> {
     this.mapRef = React.createRef();
     this.mapConf = {
       city: [52.38333, 4.9],
-      zoom: 12,
-      iconSize: [30, 30],
-      iconUrl: `img/pin.svg`,
+      zoom: 12
     };
     this.map = null;
     this.layerGroup = null;
-    this.icon = leaflet.icon({
-      iconUrl: this.mapConf.iconUrl,
-      iconSize: this.mapConf.iconSize
+    this.defaultIcon = leaflet.icon({
+      iconUrl: `img/pin.svg`,
+      iconSize: [30, 30]
+    });
+    this.activeIcon = leaflet.icon({
+      iconUrl: `img/pin-active.svg`,
+      iconSize: [30, 30]
     });
   }
 
@@ -69,16 +71,10 @@ class CityMap extends PureComponent<Props> {
     this.map = null;
   }
 
-  getCords(offers): LatLngExpression[] {
-    return offers.map((offer) => offer.coordinates);
-  }
-
   updateMap() {
-    const coordinates: LatLngExpression[] = this.getCords(this.props.offers);
-
-    coordinates.forEach((cord) => {
+    this.props.offers.forEach((offer) => {
       leaflet
-        .marker(cord, {icon: this.icon})
+        .marker(offer.coordinates, {icon: offer.id === this.props.activeOfferId ? this.activeIcon : this.defaultIcon})
         .addTo(this.layerGroup);
     });
   }

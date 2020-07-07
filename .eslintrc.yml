@@ -15,6 +15,11 @@ parserOptions:
 
 plugins: ['react']
 
+overrides:
+  - files: ['**/*.tsx']
+    rules:
+      'react/prop-types': 'off'
+
 settings:
   react:
     version: '16'

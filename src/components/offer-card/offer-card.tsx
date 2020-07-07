@@ -1,5 +1,6 @@
 import * as React from "react";
 import {OfferModel} from "../../models";
+import {OfferTypeNames} from "../../constants";
 
 interface Props {
   offerCard: OfferModel;
@@ -54,7 +55,7 @@ class OfferCard extends React.PureComponent<Props> {
           <h2 className="place-card__name">
             <a className="place-card__name-link" href="#" onClick={this._handleTitleClick}>{card.name}</a>
           </h2>
-          <p className="place-card__type">{card.type}</p>
+          <p className="place-card__type">{OfferTypeNames[card.type]}</p>
         </div>
       </article>
     );

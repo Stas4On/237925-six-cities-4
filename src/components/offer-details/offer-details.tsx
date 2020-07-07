@@ -1,5 +1,6 @@
 import * as React from "react";
 import {OfferModel} from "../../models";
+import {OfferTypeNames} from "../../constants";
 
 interface Props {
   offers: OfferModel[];
@@ -70,7 +71,7 @@ const OfferDetails: React.FunctionComponent<Props> = (props: Props) => {
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
-                  {offer.type}
+                  {OfferTypeNames[offer.type]}
                 </li>
                 <li className="property__feature property__feature--bedrooms">
                   {offer.bedrooms} Bedrooms

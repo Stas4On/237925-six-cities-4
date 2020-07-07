@@ -13,3 +13,7 @@ export const getCities = (offers) => {
   const cities = offers.map((offer) => offer.city.name);
   return Array.from(new Set(cities));
 };
+
+export const getEnumKeys = <T>(obj: T) => {
+  return (Object.keys(obj) as Array<keyof T>);
+}

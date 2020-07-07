@@ -1,39 +1,21 @@
 import * as React from "react";
-import {PureComponent} from "react";
 import OfferCard from "../offer-card/offer-card";
 import {OfferModel} from "../../models";
 
 interface Props {
   offers: OfferModel[];
   onTitleCardClick: (offerId) => void;
+  handleItemEvent: (offerId) => void;
 }
 
-interface State {
-  activeOffer: number;
-}
+const OffersList: React.FunctionComponent<Props> = (props: Props) => {
+  const {offers, onTitleCardClick, handleItemEvent} = props;
 
-class OffersList extends PureComponent<Props, State> {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeOffer: null
-    };
-    this._handleFocusChange = this._handleFocusChange.bind(this);
-  }
-
-  private _handleFocusChange(activeOffer) {
-    this.setState(() => ({activeOffer}));
-  }
-
-  render() {
-    const {offers, onTitleCardClick} = this.props;
-
-    return (
-      <div className="cities__places-list places__list tabs__content">
-        {offers.map((card) => <OfferCard key={card.id} offerCard={card} onTitleCardClick={onTitleCardClick} onFocus={this._handleFocusChange}/>)}
-      </div>
-    );
-  }
-}
+  return (
+    <div className="cities__places-list places__list tabs__content">
+      {offers.map((card) => <OfferCard key={card.id} offerCard={card} onTitleCardClick={onTitleCardClick} onFocus={handleItemEvent}/>)}
+    </div>
+  );
+};
 
 export default OffersList;
