@@ -1,8 +1,9 @@
 import * as React from "react";
-import OffersList from "../offers-list/offers-list";
 import {OfferModel} from "../../models";
-import CityMap from "../city-map/city-map";
 import Locations from "../locations/locations";
+import withActiveItem from "../../hocs/with-active-item";
+import CityPlaces from "../city-places/city-places";
+import CityPlacesEmpty from "../city-places-empty/city-places-empty";
 
 interface Props {
   offers: OfferModel[];
@@ -11,6 +12,8 @@ interface Props {
   cities: string[];
   onChangeCity: (city: string) => void;
 }
+
+const CityPlacesWrapped = withActiveItem(CityPlaces);
 
 const Main: React.FunctionComponent<Props> = (props: Props) => {
   const {currentCity, offers, cities, onTitleCardClick, onChangeCity} = props;
@@ -43,46 +46,15 @@ const Main: React.FunctionComponent<Props> = (props: Props) => {
         <Locations onChangeCity={onChangeCity} currentCity={currentCity} cities={cities}/>
       </div>
       <div className="cities">
-        <div className="cities__places-container container">
-          <section className="cities__places places">
-            <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">{offers.length} places to stay in {currentCity}</b>
-            <form className="places__sorting" action="#" method="get">
-              <span className="places__sorting-caption">Sort by</span>
-              <span className="places__sorting-type" tabIndex={0}>
-                    Popular
-                <svg className="places__sorting-arrow" width={7} height={4}>
-                  <use xlinkHref="#icon-arrow-select"/>
-                </svg>
-              </span>
-              <ul className="places__options places__options--custom places__options--opened">
-                <li className="places__option places__option--active" tabIndex={0}>Popular</li>
-                <li className="places__option" tabIndex={0}>Price: low to high</li>
-                <li className="places__option" tabIndex={0}>Price: high to low</li>
-                <li className="places__option" tabIndex={0}>Top rated first</li>
-              </ul>
-              {/*
-                <select class="places__sorting-type" id="places-sorting">
-                  <option class="places__option" value="popular" selected="">Popular</option>
-                  <option class="places__option" value="to-high">Price: low to high</option>
-                  <option class="places__option" value="to-low">Price: high to low</option>
-                  <option class="places__option" value="top-rated">Top rated first</option>
-                </select>
-                */}
-            </form>
-            <OffersList
-              offers={offers}
-              onTitleCardClick={onTitleCardClick}
-            />
-          </section>
-          <div className="cities__right-section">
-            <section className="cities__map map">
-              <CityMap
-                offers={offers}
-              />
-            </section>
-          </div>
-        </div>
+        {offers.length
+          ? <CityPlacesWrapped
+            offers={offers}
+            currentCity={currentCity}
+            onTitleCardClick={onTitleCardClick}
+          />
+          : <CityPlacesEmpty
+            currentCity={currentCity}
+          />}
       </div>
     </main>
   </div>;

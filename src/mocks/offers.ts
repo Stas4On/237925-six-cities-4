@@ -1,4 +1,4 @@
-import {OfferModel} from "../models";
+import {OfferModel, OfferType} from "../models";
 
 export const OFFERS: OfferModel[] = [
   {
@@ -13,7 +13,7 @@ export const OFFERS: OfferModel[] = [
     name: `Beautiful &amp; luxurious apartment at great location`,
     price: 120,
     rating: 4,
-    type: `apartment`,
+    type: OfferType.APARTMENT,
     imgUrl: `img/room.jpg`,
     description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century. An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
     features: [`Wi-Fi`, `Washing machine`, `Towels`, `Heating`, `Coffee machine`, `Baby seat`, `Kitchen`, `Dishwasher`, `Cabel TV`, `Fridge`],
@@ -39,7 +39,7 @@ export const OFFERS: OfferModel[] = [
     name: `Wood and stone place`,
     price: 80,
     rating: 3.5,
-    type: `private room`,
+    type: OfferType.PRIVATE_ROOM,
     imgUrl: `img/room.jpg`,
     description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century. An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
     features: [`Wi-Fi`, `Washing machine`, `Baby seat`, `Kitchen`, `Dishwasher`, `Cabel TV`, `Fridge`],
@@ -65,7 +65,7 @@ export const OFFERS: OfferModel[] = [
     name: `Canal View Prinsengracht`,
     price: 132,
     rating: 2.33,
-    type: `apartment`,
+    type: OfferType.APARTMENT,
     imgUrl: `img/room.jpg`,
     description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century. An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
     features: [`Wi-Fi`, `Washing machine`, `Towels`, `Heating`, `Coffee machine`],
@@ -91,7 +91,7 @@ export const OFFERS: OfferModel[] = [
     name: `Nice, cozy, warm big bed apartment`,
     price: 180,
     rating: 4.5,
-    type: `apartment`,
+    type: OfferType.APARTMENT,
     imgUrl: `img/room.jpg`,
     description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century. An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
     features: [`Wi-Fi`, `Kitchen`, `Dishwasher`, `Cabel TV`, `Fridge`],

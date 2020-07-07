@@ -77,7 +77,7 @@ exports[`<Main /> should render cards offers 1`] = `
             className="locations__item"
           >
             <a
-              className=" locations__item-link tabs__item"
+              className="tabs__item--active locations__item-link tabs__item"
               href="#"
               onClick={[Function]}
             >
@@ -173,6 +173,7 @@ exports[`<Main /> should render cards offers 1`] = `
           >
             4
              places to stay in 
+            Paris
           </b>
           <form
             action="#"
@@ -186,6 +187,7 @@ exports[`<Main /> should render cards offers 1`] = `
             </span>
             <span
               className="places__sorting-type"
+              onClick={[Function]}
               tabIndex={0}
             >
               Popular
@@ -200,28 +202,32 @@ exports[`<Main /> should render cards offers 1`] = `
               </svg>
             </span>
             <ul
-              className="places__options places__options--custom places__options--opened"
+              className="places__options places__options--custom"
             >
               <li
-                className="places__option places__option--active"
+                className="places__option"
+                onClick={[Function]}
                 tabIndex={0}
               >
                 Popular
               </li>
               <li
                 className="places__option"
+                onClick={[Function]}
                 tabIndex={0}
               >
                 Price: low to high
               </li>
               <li
                 className="places__option"
+                onClick={[Function]}
                 tabIndex={0}
               >
                 Price: high to low
               </li>
               <li
                 className="places__option"
+                onClick={[Function]}
                 tabIndex={0}
               >
                 Top rated first
@@ -333,7 +339,7 @@ exports[`<Main /> should render cards offers 1`] = `
                 <p
                   className="place-card__type"
                 >
-                  apartment
+                  Apartment
                 </p>
               </div>
             </article>
@@ -432,7 +438,7 @@ exports[`<Main /> should render cards offers 1`] = `
                 <p
                   className="place-card__type"
                 >
-                  private room
+                  Private room
                 </p>
               </div>
             </article>
@@ -531,7 +537,7 @@ exports[`<Main /> should render cards offers 1`] = `
                 <p
                   className="place-card__type"
                 >
-                  apartment
+                  Apartment
                 </p>
               </div>
             </article>
@@ -637,7 +643,7 @@ exports[`<Main /> should render cards offers 1`] = `
                 <p
                   className="place-card__type"
                 >
-                  apartment
+                  Apartment
                 </p>
               </div>
             </article>

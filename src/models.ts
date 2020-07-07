@@ -1,12 +1,17 @@
+import {LatLngExpression} from "leaflet";
+
 export enum OfferType {
-  PRIVATE_ROOM = `Private room`,
-  APARTMENT = `Apartment`,
-  HOUSE = `House`,
-  HOTEL = `Hotel`
+  PRIVATE_ROOM = `private room`,
+  APARTMENT = `apartment`,
+  HOUSE = `house`,
+  HOTEL = `hotel`
 }
 
-export interface Offer {
-  type: OfferType
+export enum SortType {
+  POPULAR =`popular`,
+  TO_HIGH = `to-high`,
+  TO_LOW = `to-low`,
+  TOP_RATED = `top-rated`,
 }
 
 export interface OfferModel {
@@ -14,12 +19,12 @@ export interface OfferModel {
   name: string,
   price: number,
   rating: number,
-  type: string,
+  type: OfferType,
   imgUrl: string,
   description: string,
   features: string[],
   photos: string[],
-  coordinates: number[],
+  coordinates: LatLngExpression,
   bedrooms: number,
   guests: number,
   owner: string,
