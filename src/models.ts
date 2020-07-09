@@ -1,7 +1,7 @@
 import {LatLngExpression} from "leaflet";
 
 export enum OfferType {
-  PRIVATE_ROOM = `private room`,
+  PRIVATE_ROOM = `room`,
   APARTMENT = `apartment`,
   HOUSE = `house`,
   HOTEL = `hotel`
@@ -24,7 +24,7 @@ export interface OfferModel {
   description: string,
   features: string[],
   photos: string[],
-  coordinates: LatLngExpression,
+  location: Location,
   bedrooms: number,
   guests: number,
   owner: string,
@@ -39,7 +39,7 @@ export interface City {
   location: Location
 }
 
-interface Location {
+export interface Location {
   latitude: number,
   longitude: number,
   zoom: number

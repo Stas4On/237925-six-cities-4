@@ -31,6 +31,7 @@ const CityPlaces: React.FunctionComponent<Props> = ({currentCity, offers, onTitl
       <div className="cities__right-section">
         <section className="cities__map map">
           <CityMap
+            city={offers[0].city.location}
             offers={offers}
             activeOfferId={activeItemId}
           />

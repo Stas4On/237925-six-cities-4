@@ -3,25 +3,30 @@ import * as ReactDOM from "react-dom";
 import App from "./components/app/app";
 import {applyMiddleware, createStore} from "redux";
 import {Provider} from "react-redux";
-import {ActionCreator, reducer} from "./reducer/reducer";
 import {composeWithDevTools} from "redux-devtools-extension";
+import {createAPI} from "./api";
+import thunk from "redux-thunk";
+import reducer from "./reducer/reducer";
+import {Operation as DataOperation} from "./reducer/data/data";
 
 const init = () => {
+  const api = createAPI(() => { /* do nothing */ });
   const store = createStore(
       reducer,
       composeWithDevTools(
-          applyMiddleware()
+          applyMiddleware(thunk.withExtraArgument(api))
       )
   );
 
-  store.dispatch(ActionCreator.loadOffers());
-
-  ReactDOM.render(
-      <Provider store={store}>
-        <App/>
-      </Provider>,
-      document.getElementById(`root`)
-  );
+  store.dispatch(DataOperation.loadOffers())
+    .then(() => {
+      ReactDOM.render(
+          <Provider store={store}>
+            <App/>
+          </Provider>,
+          document.getElementById(`root`)
+      );
+    });
 };
 
 init();

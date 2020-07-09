@@ -2,6 +2,15 @@ import {OfferType, SortType} from "./models";
 
 export const MAX_CITIES_LENGTH = 6;
 
+export const CITIES: string[] = [
+  `Paris`,
+  `Cologne`,
+  `Brussels`,
+  `Amsterdam`,
+  `Hamburg`,
+  `Dusseldorf`
+];
+
 export const OfferTypeNames = {
   [OfferType.PRIVATE_ROOM]: `Private room`,
   [OfferType.APARTMENT]: `Apartment`,

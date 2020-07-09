@@ -1,32 +1,25 @@
 import * as React from "react";
 import * as leaflet from "leaflet";
 import {PureComponent} from "react";
-import {OfferModel} from "../../models";
+import {Location, OfferModel} from "../../models";
 import {Icon, LatLngExpression, LayerGroup, Map} from "leaflet";
 
 interface Props {
   offers: OfferModel[];
   activeOfferId: number;
+  city: Location;
 }
 
 class CityMap extends PureComponent<Props> {
   private readonly defaultIcon: Icon;
   private readonly activeIcon: Icon;
   private readonly mapRef: React.RefObject<HTMLDivElement>;
-  private mapConf: {
-    city: LatLngExpression;
-    zoom: number;
-  };
   private map: Map;
   private layerGroup: LayerGroup;
 
   constructor(props) {
     super(props);
     this.mapRef = React.createRef();
-    this.mapConf = {
-      city: [52.38333, 4.9],
-      zoom: 12
-    };
     this.map = null;
     this.layerGroup = null;
     this.defaultIcon = leaflet.icon({
@@ -39,15 +32,27 @@ class CityMap extends PureComponent<Props> {
     });
   }
 
+  private _getCoordinate(location: Location): LatLngExpression {
+    return [location.latitude, location.longitude];
+  }
+
+  private _setView(city, zoom) {
+    this.map.setView(city, zoom);
+  }
+
   componentDidMount() {
     if (this.mapRef.current) {
+      const {city} = this.props;
+      const cityCoordinate = this._getCoordinate(city);
+      const mapZoom = city.zoom;
+
       this.map = leaflet.map(this.mapRef.current.id, {
-        center: this.mapConf.city,
-        zoom: this.mapConf.zoom,
+        center: cityCoordinate,
+        zoom: mapZoom,
         zoomControl: false
       });
 
-      this.map.setView(this.mapConf.city, this.mapConf.zoom);
+      this._setView(cityCoordinate, mapZoom);
 
       leaflet
         .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
@@ -62,7 +67,9 @@ class CityMap extends PureComponent<Props> {
   }
 
   componentDidUpdate() {
-    this.map.setView(this.mapConf.city, this.mapConf.zoom);
+    const {city} = this.props;
+
+    this._setView(this._getCoordinate(city), city.zoom);
     this.layerGroup.clearLayers();
     this.updateMap();
   }
@@ -74,7 +81,7 @@ class CityMap extends PureComponent<Props> {
   updateMap() {
     this.props.offers.forEach((offer) => {
       leaflet
-        .marker(offer.coordinates, {icon: offer.id === this.props.activeOfferId ? this.activeIcon : this.defaultIcon})
+        .marker(this._getCoordinate(offer.location), {icon: offer.id === this.props.activeOfferId ? this.activeIcon : this.defaultIcon})
         .addTo(this.layerGroup);
     });
   }

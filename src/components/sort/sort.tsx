@@ -1,9 +1,9 @@
 import * as React from "react";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer/reducer";
 import {SortTypeNames} from "../../constants";
 import {SortType} from "../../models";
 import {getEnumKeys} from "../../common/utils";
+import {ActionCreator} from "../../reducer/city-places/city-places";
 
 interface Props {
   activeSort: string;
