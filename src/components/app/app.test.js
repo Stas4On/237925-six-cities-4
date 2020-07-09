@@ -9,9 +9,13 @@ const mockStore = configureStore([]);
 
 it(`<App /> should render correctly`, () => {
   const store = mockStore({
-    offers: testOffers,
-    city: cities[0],
-    cities
+    DATA: {
+      offers: testOffers,
+    },
+    CITY_PLACES: {
+      currentCity: cities[0],
+      cities
+    }
   });
   const tree = renderer
     .create(
@@ -19,7 +23,7 @@ it(`<App /> should render correctly`, () => {
           <App
             onChangeCity = {() => {}}
             onTitleCardClick={() => {}}
-            city = {cities[0]}
+            currentCity = {cities[0]}
             cities={cities}
             offers = {testOffers}
           />

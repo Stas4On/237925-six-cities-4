@@ -4,7 +4,9 @@ import Main from "../main/main";
 import {OfferModel} from "../../models";
 import OfferDetails from "../offer-details/offer-details";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
-import {ActionCreator} from "../../reducer/reducer";
+import {getCityOffers} from "../../reducer/data/selectors";
+import {ActionCreator} from "../../reducer/city-places/city-places";
+import {getCities, getCurrentCity} from "../../reducer/city-places/selectors";
 
 interface Props {
   numberRentalOffers: number;
@@ -73,9 +75,9 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = (state) => ({
-  currentCity: state.currentCity,
-  offers: state.offers,
-  cities: state.cities
+  currentCity: getCurrentCity(state),
+  offers: getCityOffers(state),
+  cities: getCities(state)
 });
 
 export {App};
