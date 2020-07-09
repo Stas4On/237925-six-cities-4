@@ -1,5 +1,3 @@
-import {LatLngExpression} from "leaflet";
-
 export enum OfferType {
   PRIVATE_ROOM = `room`,
   APARTMENT = `apartment`,
@@ -12,6 +10,11 @@ export enum SortType {
   TO_HIGH = `to-high`,
   TO_LOW = `to-low`,
   TOP_RATED = `top-rated`,
+}
+
+export enum AuthStatus {
+  NO_AUTH = `NO_AUTH`,
+  AUTH = `AUTH`
 }
 
 export interface OfferModel {
@@ -43,4 +46,17 @@ export interface Location {
   latitude: number,
   longitude: number,
   zoom: number
+}
+
+export interface UserAuthenticationData {
+  login: string;
+  password: string;
+}
+
+export interface User {
+  id: number;
+  name: string;
+  is_pro: boolean;
+  avatar_url: string;
+  email?: string;
 }

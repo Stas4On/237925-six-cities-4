@@ -5,22 +5,16 @@ import {OfferTypeNames} from "../../constants";
 interface Props {
   offerCard: OfferModel;
   onFocus: (offerId) => void;
-  onTitleCardClick: (offerId) => void;
 }
 
 class OfferCard extends React.PureComponent<Props> {
   constructor(props: Props) {
     super(props);
     this._handleFocus = this._handleFocus.bind(this);
-    this._handleTitleClick = this._handleTitleClick.bind(this);
   }
 
   private _handleFocus(offerId) {
     this.props.onFocus(offerId);
-  }
-
-  private _handleTitleClick() {
-    this.props.onTitleCardClick(this.props.offerCard.id);
   }
 
   render() {
@@ -53,7 +47,7 @@ class OfferCard extends React.PureComponent<Props> {
             </div>
           </div>
           <h2 className="place-card__name">
-            <a className="place-card__name-link" href="#" onClick={this._handleTitleClick}>{card.name}</a>
+            <a className="place-card__name-link" href="#">{card.name}</a>
           </h2>
           <p className="place-card__type">{OfferTypeNames[card.type]}</p>
         </div>

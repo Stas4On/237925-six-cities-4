@@ -8,6 +8,7 @@ import {createAPI} from "./api";
 import thunk from "redux-thunk";
 import reducer from "./reducer/reducer";
 import {Operation as DataOperation} from "./reducer/data/data";
+import {Operation as UserOperation} from "./reducer/user/user";
 
 const init = () => {
   const api = createAPI(() => { /* do nothing */ });
@@ -18,6 +19,7 @@ const init = () => {
       )
   );
 
+  store.dispatch(UserOperation.checkAuth());
   store.dispatch(DataOperation.loadOffers())
     .then(() => {
       ReactDOM.render(
