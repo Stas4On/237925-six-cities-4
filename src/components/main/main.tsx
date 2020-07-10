@@ -1,5 +1,5 @@
 import * as React from "react";
-import {OfferModel} from "../../models";
+import {AuthStatus, OfferModel, User} from "../../models";
 import Locations from "../locations/locations";
 import withActiveItem from "../../hocs/with-active-item";
 import CityPlaces from "../city-places/city-places";
@@ -7,16 +7,16 @@ import CityPlacesEmpty from "../city-places-empty/city-places-empty";
 
 interface Props {
   offers: OfferModel[];
-  onTitleCardClick: (offerId) => void;
   currentCity: string;
   cities: string[];
   onChangeCity: (city: string) => void;
+  authStatus: AuthStatus;
+  userInfo: User;
 }
 
 const CityPlacesWrapped = withActiveItem(CityPlaces);
 
-const Main: React.FunctionComponent<Props> = (props: Props) => {
-  const {currentCity, offers, cities, onTitleCardClick, onChangeCity} = props;
+const Main: React.FunctionComponent<Props> = ({currentCity, offers, cities, onChangeCity, userInfo, authStatus}) => {
   return <div className="page page--gray page--main">
     <header className="header">
       <div className="container">
@@ -29,11 +29,16 @@ const Main: React.FunctionComponent<Props> = (props: Props) => {
           <nav className="header__nav">
             <ul className="header__nav-list">
               <li className="header__nav-item user">
-                <a className="header__nav-link header__nav-link--profile" href="#">
-                  <div className="header__avatar-wrapper user__avatar-wrapper">
-                  </div>
-                  <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                </a>
+                {authStatus === AuthStatus.AUTH
+                  ? <a className="header__nav-link header__nav-link--profile" href="#">
+                    <div className="header__avatar-wrapper user__avatar-wrapper" />
+                    <span className="header__user-name user__name">{userInfo?.email}</span>
+                  </a>
+                  : <a className="header__nav-link header__nav-link--profile" href="#">
+                    <div className="header__avatar-wrapper user__avatar-wrapper" />
+                    <span className="header__login">Sign in</span>
+                  </a>
+                }
               </li>
             </ul>
           </nav>
@@ -50,7 +55,6 @@ const Main: React.FunctionComponent<Props> = (props: Props) => {
           ? <CityPlacesWrapped
             offers={offers}
             currentCity={currentCity}
-            onTitleCardClick={onTitleCardClick}
           />
           : <CityPlacesEmpty
             currentCity={currentCity}

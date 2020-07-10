@@ -1,18 +1,16 @@
 import {extend, mapOfferFromAPI} from "../../common/utils";
-import {ActionCreator, ActionCreatorsMapObject, Reducer} from "redux";
+import {ActionCreatorsMapObject, Reducer} from "redux";
 import {SortType} from "../../models";
 import {AxiosInstance} from "axios";
 import {CITIES} from "../../constants";
 import {ServerModels} from "../../common/server-models";
 import OfferServerModel = ServerModels.OfferServerModel;
+import {DataStore} from "../reduser.model";
 
 const initialCity: string = CITIES[0];
 
-const initialState = {
-  currentCity: initialCity,
-  activeSort: SortType.POPULAR,
-  offers: [],
-  cities: null
+const initialState: DataStore = {
+  offers: []
 };
 
 enum ActionType {
@@ -26,7 +24,7 @@ const ActionCreator: ActionCreatorsMapObject = {
   })
 };
 
-export const Operation = {
+const Operation = {
   loadOffers: () => (dispatch, getState, api: AxiosInstance) => {
     return api.get<OfferServerModel[]>(`/hotels`)
       .then((response) => {
@@ -47,4 +45,4 @@ const reducer: Reducer = (state = initialState, action) => {
   return state;
 };
 
-export {reducer, ActionType, ActionCreator};
+export {reducer, ActionType, ActionCreator, Operation};

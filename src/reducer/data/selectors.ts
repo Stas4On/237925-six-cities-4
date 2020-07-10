@@ -1,16 +1,11 @@
 import {createSelector} from "reselect";
 import {SortType} from "../../models";
 import {NameSpace} from "../name-space";
+import {getActiveSortType, getCurrentCity} from "../city-places/selectors";
 
-const getOffers = (state) => {
-  return state[NameSpace.DATA].offers;
-}
-const getActiveSortType = (state) => {
-  return state[NameSpace.CITY_PLACES].activeSort;
-}
-const getCurrentCity = (state) => {
-  return state[NameSpace.CITY_PLACES].currentCity;
-}
+const NAME_SPACE = NameSpace.DATA;
+
+export const getOffers = (state) => (state[NAME_SPACE].offers);
 
 export const getCityOffers = createSelector(
   getOffers,

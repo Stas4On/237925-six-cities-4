@@ -2,10 +2,11 @@ import {CITIES} from "../../constants";
 import {SortType} from "../../models";
 import {ActionCreatorsMapObject, Reducer} from "redux";
 import {extend} from "../../common/utils";
+import {CityPlacesStore} from "../reduser.model";
 
 const initialCity: string = CITIES[0];
 
-const initialState = {
+const initialState: CityPlacesStore = {
   currentCity: initialCity,
   activeSort: SortType.POPULAR,
   cities: CITIES
@@ -21,7 +22,7 @@ const ActionCreator: ActionCreatorsMapObject = {
     type: ActionType.CHANGE_CITY,
     payload: city
   }),
-  changeSort: (sortType = initialState.activeSort) => ({
+  changeSort: (sortType) => ({
     type: ActionType.CHANGE_SORT,
     payload: sortType
   })

@@ -4,6 +4,7 @@ import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {cities, testOffers} from "../../mocks/test-mocks";
 import App from "./app";
+import {AuthStatus} from "../../models";
 
 const mockStore = configureStore([]);
 
@@ -15,6 +16,10 @@ it(`<App /> should render correctly`, () => {
     CITY_PLACES: {
       currentCity: cities[0],
       cities
+    },
+    USER: {
+      authStatus: AuthStatus.NO_AUTH,
+      userInfo: null
     }
   });
   const tree = renderer

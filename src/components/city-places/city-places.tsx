@@ -8,14 +8,13 @@ import Sort from "../sort/sort";
 interface Props {
   currentCity: string;
   offers: OfferModel[];
-  onTitleCardClick: (offerId) => void;
   handleItemEvent: (offerId) => void;
   activeItemId: number;
 }
 
 const SortWrapped = withStatus(Sort);
 
-const CityPlaces: React.FunctionComponent<Props> = ({currentCity, offers, onTitleCardClick, handleItemEvent, activeItemId}) => {
+const CityPlaces: React.FunctionComponent<Props> = ({currentCity, offers, handleItemEvent, activeItemId}) => {
   return (
     <div className="cities__places-container container">
       <section className="cities__places places">
@@ -24,7 +23,6 @@ const CityPlaces: React.FunctionComponent<Props> = ({currentCity, offers, onTitl
         <SortWrapped/>
         <OffersList
           offers={offers}
-          onTitleCardClick={onTitleCardClick}
           handleItemEvent={handleItemEvent}
         />
       </section>
