@@ -24,7 +24,7 @@ class SignIn extends React.PureComponent<Props> {
         login: this.login.current.value,
         password: this.password.current.value
       }
-    )
+    );
   }
 
   private _handleSubmit(event: React.SyntheticEvent) {
@@ -71,15 +71,11 @@ class SignIn extends React.PureComponent<Props> {
                 onSubmit={this._handleSubmit}>
                 <div className="login__input-wrapper form__input-wrapper">
                   <label className="visually-hidden">E-mail</label>
-                  <input className="login__input form__input" type="email" name="email" placeholder="Email" required
-                         ref={this.login}
-                  />
+                  <input className="login__input form__input" type="email" name="email" placeholder="Email" required ref={this.login} />
                 </div>
                 <div className="login__input-wrapper form__input-wrapper">
                   <label className="visually-hidden">Password</label>
-                  <input className="login__input form__input" type="password" name="password" placeholder="Password" required
-                         ref={this.password}
-                  />
+                  <input className="login__input form__input" type="password" name="password" placeholder="Password" required ref={this.password} />
                 </div>
                 <button className="login__submit form__submit button" type="submit">Sign in</button>
               </form>

@@ -18,7 +18,7 @@ interface Props {
   cities: string[];
   onChangeCity: (city: string) => void;
   authStatus: AuthStatus;
-  userInfo: User,
+  userInfo: User;
   logIn: (authData: UserAuthenticationData) => void;
 }
 
@@ -26,7 +26,7 @@ const App: React.FunctionComponent<Props> = ({offers, currentCity, cities, onCha
 
   const _renderApp = () => {
     if (authStatus === AuthStatus.NO_AUTH) {
-      return <SignIn onSubmit={logIn}/>
+      return <SignIn onSubmit={logIn}/>;
     }
     return <Main
       onChangeCity={onChangeCity}
@@ -36,7 +36,8 @@ const App: React.FunctionComponent<Props> = ({offers, currentCity, cities, onCha
       authStatus={authStatus}
       userInfo={userInfo}
     />;
-  }
+  };
+
   return (
     <BrowserRouter>
       <Switch>
@@ -52,14 +53,14 @@ const App: React.FunctionComponent<Props> = ({offers, currentCity, cities, onCha
       </Switch>
     </BrowserRouter>
   );
-}
+};
 
 const mapDispatchToProps = (dispatch) => ({
   onChangeCity(city) {
     dispatch(ActionCreator.changeCity(city));
   },
   logIn(userAuthData) {
-    dispatch(UserOperation.logIn(userAuthData))
+    dispatch(UserOperation.logIn(userAuthData));
   }
 });
 

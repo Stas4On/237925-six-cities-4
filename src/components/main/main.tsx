@@ -1,5 +1,5 @@
 import * as React from "react";
-import {AuthStatus, OfferModel, User, UserAuthenticationData} from "../../models";
+import {AuthStatus, OfferModel, User} from "../../models";
 import Locations from "../locations/locations";
 import withActiveItem from "../../hocs/with-active-item";
 import CityPlaces from "../city-places/city-places";
@@ -11,13 +11,12 @@ interface Props {
   cities: string[];
   onChangeCity: (city: string) => void;
   authStatus: AuthStatus;
-  userInfo: User
+  userInfo: User;
 }
 
 const CityPlacesWrapped = withActiveItem(CityPlaces);
 
 const Main: React.FunctionComponent<Props> = ({currentCity, offers, cities, onChangeCity, userInfo, authStatus}) => {
-  console.log(authStatus);
   return <div className="page page--gray page--main">
     <header className="header">
       <div className="container">
@@ -31,14 +30,12 @@ const Main: React.FunctionComponent<Props> = ({currentCity, offers, cities, onCh
             <ul className="header__nav-list">
               <li className="header__nav-item user">
                 {authStatus === AuthStatus.AUTH
-                ? <a className="header__nav-link header__nav-link--profile" href="#">
-                    <div className="header__avatar-wrapper user__avatar-wrapper">
-                    </div>
+                  ? <a className="header__nav-link header__nav-link--profile" href="#">
+                    <div className="header__avatar-wrapper user__avatar-wrapper" />
                     <span className="header__user-name user__name">{userInfo?.email}</span>
                   </a>
-                : <a className="header__nav-link header__nav-link--profile" href="#">
-                    <div className="header__avatar-wrapper user__avatar-wrapper">
-                    </div>
+                  : <a className="header__nav-link header__nav-link--profile" href="#">
+                    <div className="header__avatar-wrapper user__avatar-wrapper" />
                     <span className="header__login">Sign in</span>
                   </a>
                 }
