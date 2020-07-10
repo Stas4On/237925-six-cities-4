@@ -45,9 +45,9 @@ exports[`<Main /> should render cards offers 1`] = `
                   className="header__avatar-wrapper user__avatar-wrapper"
                 />
                 <span
-                  className="header__user-name user__name"
+                  className="header__login"
                 >
-                  Oliver.conner@gmail.com
+                  Sign in
                 </span>
               </a>
             </li>
@@ -331,7 +331,6 @@ exports[`<Main /> should render cards offers 1`] = `
                   <a
                     className="place-card__name-link"
                     href="#"
-                    onClick={[Function]}
                   >
                     Beautiful &amp; luxurious apartment at great location
                   </a>
@@ -430,7 +429,6 @@ exports[`<Main /> should render cards offers 1`] = `
                   <a
                     className="place-card__name-link"
                     href="#"
-                    onClick={[Function]}
                   >
                     Wood and stone place
                   </a>
@@ -529,7 +527,6 @@ exports[`<Main /> should render cards offers 1`] = `
                   <a
                     className="place-card__name-link"
                     href="#"
-                    onClick={[Function]}
                   >
                     Canal View Prinsengracht
                   </a>
@@ -635,7 +632,6 @@ exports[`<Main /> should render cards offers 1`] = `
                   <a
                     className="place-card__name-link"
                     href="#"
-                    onClick={[Function]}
                   >
                     Nice, cozy, warm big bed apartment
                   </a>
