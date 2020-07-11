@@ -9,9 +9,12 @@ import thunk from "redux-thunk";
 import reducer from "./reducer/reducer";
 import {Operation as DataOperation} from "./reducer/data/data";
 import {Operation as UserOperation} from "./reducer/user/user";
+import history from "./history";
+import {Router} from "react-router-dom";
 
 const init = () => {
-  const api = createAPI(() => { /* do nothing */ });
+  const api = createAPI(() => { /* do nothing */
+  });
   const store = createStore(
       reducer,
       composeWithDevTools(
@@ -19,12 +22,15 @@ const init = () => {
       )
   );
 
-  store.dispatch(UserOperation.checkAuth());
+  store.dispatch(UserOperation.checkAuth()).catch(() => { /* do nothing */
+  });
   store.dispatch(DataOperation.loadOffers())
     .then(() => {
       ReactDOM.render(
           <Provider store={store}>
-            <App/>
+            <Router history={history}>
+              <App/>
+            </Router>
           </Provider>,
           document.getElementById(`root`)
       );

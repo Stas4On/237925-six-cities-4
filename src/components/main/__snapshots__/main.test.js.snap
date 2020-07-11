@@ -39,7 +39,8 @@ exports[`<Main /> should render cards offers 1`] = `
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="#"
+                href="/login"
+                onClick={[Function]}
               >
                 <div
                   className="header__avatar-wrapper user__avatar-wrapper"
@@ -285,8 +286,10 @@ exports[`<Main /> should render cards offers 1`] = `
                       / night
                     </span>
                   </div>
-                  <button
-                    className="place-card__bookmark-button button"
+                  <a
+                    className="place-card__bookmark-button button "
+                    href="/login"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -303,7 +306,7 @@ exports[`<Main /> should render cards offers 1`] = `
                     >
                       To bookmarks
                     </span>
-                  </button>
+                  </a>
                 </div>
                 <div
                   className="place-card__rating rating"
@@ -330,7 +333,8 @@ exports[`<Main /> should render cards offers 1`] = `
                 >
                   <a
                     className="place-card__name-link"
-                    href="#"
+                    href="/offer/12"
+                    onClick={[Function]}
                   >
                     Beautiful &amp; luxurious apartment at great location
                   </a>
@@ -383,8 +387,10 @@ exports[`<Main /> should render cards offers 1`] = `
                       / night
                     </span>
                   </div>
-                  <button
-                    className="place-card__bookmark-button button"
+                  <a
+                    className="place-card__bookmark-button button "
+                    href="/login"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -401,7 +407,7 @@ exports[`<Main /> should render cards offers 1`] = `
                     >
                       To bookmarks
                     </span>
-                  </button>
+                  </a>
                 </div>
                 <div
                   className="place-card__rating rating"
@@ -428,7 +434,8 @@ exports[`<Main /> should render cards offers 1`] = `
                 >
                   <a
                     className="place-card__name-link"
-                    href="#"
+                    href="/offer/31"
+                    onClick={[Function]}
                   >
                     Wood and stone place
                   </a>
@@ -481,8 +488,10 @@ exports[`<Main /> should render cards offers 1`] = `
                       / night
                     </span>
                   </div>
-                  <button
-                    className="place-card__bookmark-button button"
+                  <a
+                    className="place-card__bookmark-button button "
+                    href="/login"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -499,7 +508,7 @@ exports[`<Main /> should render cards offers 1`] = `
                     >
                       To bookmarks
                     </span>
-                  </button>
+                  </a>
                 </div>
                 <div
                   className="place-card__rating rating"
@@ -526,7 +535,8 @@ exports[`<Main /> should render cards offers 1`] = `
                 >
                   <a
                     className="place-card__name-link"
-                    href="#"
+                    href="/offer/23"
+                    onClick={[Function]}
                   >
                     Canal View Prinsengracht
                   </a>
@@ -586,8 +596,10 @@ exports[`<Main /> should render cards offers 1`] = `
                       / night
                     </span>
                   </div>
-                  <button
-                    className="place-card__bookmark-button button"
+                  <a
+                    className="place-card__bookmark-button button "
+                    href="/login"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -604,7 +616,7 @@ exports[`<Main /> should render cards offers 1`] = `
                     >
                       To bookmarks
                     </span>
-                  </button>
+                  </a>
                 </div>
                 <div
                   className="place-card__rating rating"
@@ -631,7 +643,8 @@ exports[`<Main /> should render cards offers 1`] = `
                 >
                   <a
                     className="place-card__name-link"
-                    href="#"
+                    href="/offer/1"
+                    onClick={[Function]}
                   >
                     Nice, cozy, warm big bed apartment
                   </a>

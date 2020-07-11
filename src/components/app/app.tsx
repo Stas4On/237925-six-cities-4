@@ -3,13 +3,14 @@ import {connect} from "react-redux";
 import Main from "../main/main";
 import {AuthStatus, OfferModel, User, UserAuthenticationData} from "../../models";
 import OfferDetails from "../offer-details/offer-details";
-import {BrowserRouter, Route, Switch} from "react-router-dom";
+import {BrowserRouter, Route, Switch, Redirect} from "react-router-dom";
 import {getCityOffers} from "../../reducer/data/selectors";
 import {ActionCreator} from "../../reducer/city-places/city-places";
 import {getCities, getCurrentCity} from "../../reducer/city-places/selectors";
 import SignIn from "../sign-in/sign-in";
 import {Operation as UserOperation} from "../../reducer/user/user";
 import {getAuthStatus, getUserInfo} from "../../reducer/user/selectors";
+import {AppRoute} from "../../constants";
 
 
 interface Props {
@@ -23,33 +24,42 @@ interface Props {
 }
 
 const App: React.FunctionComponent<Props> = ({offers, currentCity, cities, onChangeCity, authStatus, userInfo, logIn}) => {
-
-  const _renderApp = () => {
-    if (authStatus === AuthStatus.NO_AUTH) {
-      return <SignIn onSubmit={logIn}/>;
-    }
-    return <Main
-      onChangeCity={onChangeCity}
-      offers={offers}
-      currentCity={currentCity}
-      cities={cities}
-      authStatus={authStatus}
-      userInfo={userInfo}
-    />;
-  };
-
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/">
-          {_renderApp()}
-        </Route>
-        <Route path="/dev-offer-details">
-          <OfferDetails id={1} offers={offers}/>
-        </Route>
-        <Route path="/login">
-          <SignIn onSubmit={logIn}/>
-        </Route>
+        <Route
+          exact
+          path={AppRoute.ROOT}
+          render={() => (
+            <Main
+              onChangeCity={onChangeCity}
+              offers={offers}
+              currentCity={currentCity}
+              cities={cities}
+              authStatus={authStatus}
+              userInfo={userInfo}
+            />
+          )}
+        />
+        <Route
+          exact
+          path={AppRoute.LOGIN}
+          render={() => (
+            authStatus === AuthStatus.NO_AUTH
+              ? <SignIn onSubmit={logIn}/>
+              : <Redirect to="/"/>
+          )}
+        />
+        <Route
+          exact
+          path={AppRoute.OFFER + `/:id`}
+          render={(routeProps) => {
+            const id = parseInt(routeProps.match.params.id, 10);
+            const activeOffer = offers.find((item) => item.id === id);
+
+            return <OfferDetails offer={activeOffer} id={id}/>;
+          }}
+        />
       </Switch>
     </BrowserRouter>
   );
