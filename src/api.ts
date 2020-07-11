@@ -20,7 +20,7 @@ export const createAPI = (onUnauthorized): AxiosInstance => {
 
     if(response.status === Error.UNAUTHORIZED) {
       onUnauthorized();
-      throw err;
+      // throw err;
     }
 
     throw err;

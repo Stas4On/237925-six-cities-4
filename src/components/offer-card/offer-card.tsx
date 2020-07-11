@@ -1,24 +1,44 @@
 import * as React from "react";
-import {OfferModel} from "../../models";
-import {OfferTypeNames} from "../../constants";
+import {connect} from 'react-redux';
+import {AuthStatus, OfferModel} from "../../models";
+import {AppRoute, OfferTypeNames} from "../../constants";
+import {Link} from "react-router-dom";
+import {Operation as DataOperation} from '../../reducer/data/data';
+import {getAuthStatus} from "../../reducer/user/selectors";
+import history from "../../history";
 
 interface Props {
   offerCard: OfferModel;
   onFocus: (offerId) => void;
+  onFavoriteClick: (id: number, isFavorite: boolean) => void;
+  authStatus: AuthStatus;
 }
 
 class OfferCard extends React.PureComponent<Props> {
   constructor(props: Props) {
     super(props);
     this._handleFocus = this._handleFocus.bind(this);
+    this._handleBookmarksButtonClick = this._handleBookmarksButtonClick.bind(this);
   }
 
   private _handleFocus(offerId) {
     this.props.onFocus(offerId);
   }
 
+  private _handleBookmarksButtonClick(id, isFavorite) {
+    const {authStatus, onFavoriteClick} = this.props;
+
+    if (authStatus === AuthStatus.AUTH) {
+      onFavoriteClick(id, isFavorite);
+    } else {
+      history.push(AppRoute.LOGIN);
+    }
+  }
+
   render() {
-    const {offerCard: card} = this.props;
+    const {offerCard: card, onFavoriteClick, authStatus} = this.props;
+    const favoriteClass = card.favorite ? `place-card__bookmark-button--active` : ``;
+
     return (
       <article className="cities__place-card place-card" onMouseEnter={() => this._handleFocus(card.id)} onMouseLeave={() => this._handleFocus(null)}>
         {this.addPremiumLabel(card.premium)}
@@ -33,12 +53,28 @@ class OfferCard extends React.PureComponent<Props> {
               <b className="place-card__price-value">€{card.price}</b>
               <span className="place-card__price-text">/&nbsp;night</span>
             </div>
-            <button className="place-card__bookmark-button button" type="button">
-              <svg className="place-card__bookmark-icon" width={18} height={19}>
-                <use xlinkHref="#icon-bookmark"/>
-              </svg>
-              <span className="visually-hidden">To bookmarks</span>
-            </button>
+            {authStatus === AuthStatus.AUTH
+              ? <button
+                className={`place-card__bookmark-button button ${favoriteClass}`}
+                type="button"
+                onClick={() => onFavoriteClick(card.id, card.favorite)}
+              >
+                <svg className="place-card__bookmark-icon" width={18} height={19}>
+                  <use xlinkHref="#icon-bookmark"/>
+                </svg>
+                <span className="visually-hidden">To bookmarks</span>
+              </button>
+              : <Link
+                className={`place-card__bookmark-button button ${favoriteClass}`}
+                type="button"
+                to={AppRoute.LOGIN}
+              >
+                <svg className="place-card__bookmark-icon" width={18} height={19}>
+                  <use xlinkHref="#icon-bookmark"/>
+                </svg>
+                <span className="visually-hidden">To bookmarks</span>
+              </Link>
+            }
           </div>
           <div className="place-card__rating rating">
             <div className="place-card__stars rating__stars">
@@ -47,7 +83,7 @@ class OfferCard extends React.PureComponent<Props> {
             </div>
           </div>
           <h2 className="place-card__name">
-            <a className="place-card__name-link" href="#">{card.name}</a>
+            <Link className="place-card__name-link" to={AppRoute.OFFER + `/${card.id}`}>{card.name}</Link>
           </h2>
           <p className="place-card__type">{OfferTypeNames[card.type]}</p>
         </div>
@@ -64,4 +100,15 @@ class OfferCard extends React.PureComponent<Props> {
   }
 }
 
-export default OfferCard;
+const mapStateToProps = (state) => ({
+  authStatus: getAuthStatus(state)
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onFavoriteClick(id, isFavorite) {
+    dispatch(DataOperation.toggleFavorite(id, isFavorite));
+  }
+});
+
+export {OfferCard};
+export default connect(mapStateToProps, mapDispatchToProps)(OfferCard);

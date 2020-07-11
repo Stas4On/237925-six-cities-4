@@ -2,6 +2,7 @@ import {AuthStatus, OfferModel, User} from "../models";
 
 export interface DataStore {
   offers: OfferModel[];
+  favoriteOffers: OfferModel[];
 }
 
 export interface CityPlacesStore {

@@ -15,4 +15,4 @@ const OffersList: React.FunctionComponent<Props> = ({offers, handleItemEvent}) =
   );
 };
 
-export default OffersList;
+export default React.memo(OffersList);

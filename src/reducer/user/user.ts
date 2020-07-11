@@ -2,7 +2,7 @@ import {AuthStatus, UserAuthenticationData} from "../../models";
 import {ActionCreatorsMapObject, Reducer} from "redux";
 import {extend} from "../../common/utils";
 import {AxiosInstance} from "axios";
-import {UserStore} from "../reduser.model";
+import {UserStore} from "../reduсer.model";
 
 const initialState: UserStore = {
   authStatus: AuthStatus.NO_AUTH,
@@ -25,12 +25,16 @@ const ActionCreator: ActionCreatorsMapObject = {
   })
 }
 
+const onUserOperationSuccess = (user, dispatch) => {
+  dispatch(ActionCreator.changeAuthStatus(AuthStatus.AUTH))
+  dispatch(ActionCreator.userInfo(user))
+};
+
 const Operation = {
   checkAuth: () => (dispatch, getState, api: AxiosInstance) => {
     return api.get(`/login`)
       .then((authInfo) => {
-        dispatch(ActionCreator.changeAuthStatus(AuthStatus.AUTH))
-        dispatch(ActionCreator.userInfo(authInfo.data))
+        onUserOperationSuccess(authInfo.data, dispatch);
       })
   },
   logIn: (authData: UserAuthenticationData) => (dispatch, getState, api: AxiosInstance) => {
@@ -39,8 +43,7 @@ const Operation = {
       password: authData.password
     })
       .then((authInfo) => {
-        dispatch(ActionCreator.changeAuthStatus(AuthStatus.AUTH))
-        dispatch(ActionCreator.userInfo(authInfo.data))
+        onUserOperationSuccess(authInfo.data, dispatch);
       })
   }
 }

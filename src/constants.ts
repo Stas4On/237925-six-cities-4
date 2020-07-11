@@ -24,3 +24,10 @@ export const SortTypeNames = {
   [SortType.TO_LOW]: `Price: high to low`,
   [SortType.TOP_RATED]: `Top rated first`,
 }
+
+export const AppRoute = {
+  ROOT: `/`,
+  OFFER: `/offer`,
+  FAVORITES: `/favorites`,
+  LOGIN: `/login`
+};
