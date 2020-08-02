@@ -1,7 +1,7 @@
 import * as React from "react";
 import {connect} from "react-redux";
 import Main from "../main/main";
-import {AuthStatus, OfferModel, User, UserAuthenticationData} from "../../models";
+import {AuthStatus, OfferModel, User, UserAuthenticationData} from "../../models/models";
 import OfferDetails from "../offer-details/offer-details";
 import {BrowserRouter, Route, Switch, Redirect} from "react-router-dom";
 import {getCityOffers} from "../../reducer/data/selectors";
@@ -10,8 +10,11 @@ import {getCities, getCurrentCity} from "../../reducer/city-places/selectors";
 import SignIn from "../sign-in/sign-in";
 import {Operation as UserOperation} from "../../reducer/user/user";
 import {getAuthStatus, getUserInfo} from "../../reducer/user/selectors";
-import {AppRoute} from "../../constants";
-
+import {ActionCreator as ErrorActionCreator} from '../../reducer/errors/errors';
+import {AppRoute} from "../../constants/constants";
+import Favorites from "../favorites/favorites";
+import {getErrorStatus} from "../../reducer/errors/selectors";
+import withMessage from "../../hocs/with-message/with-message";
 
 interface Props {
   offers: OfferModel[];
@@ -21,9 +24,19 @@ interface Props {
   authStatus: AuthStatus;
   userInfo: User;
   logIn: (authData: UserAuthenticationData) => void;
+  errorStatus: number;
+  resetError: () => void;
 }
 
-const App: React.FunctionComponent<Props> = ({offers, currentCity, cities, onChangeCity, authStatus, userInfo, logIn}) => {
+const SignInWrapped = withMessage(SignIn);
+const MainWrapped = withMessage(Main);
+const OfferDetailsWrapped = withMessage(OfferDetails);
+const FavoritesWrapped = withMessage(Favorites);
+
+const App: React.FunctionComponent<Props> = ({offers, currentCity, cities, onChangeCity, authStatus, userInfo, logIn, errorStatus, resetError}) => {
+  if (offers.length === 0) {
+    return <></>;
+  }
   return (
     <BrowserRouter>
       <Switch>
@@ -31,13 +44,15 @@ const App: React.FunctionComponent<Props> = ({offers, currentCity, cities, onCha
           exact
           path={AppRoute.ROOT}
           render={() => (
-            <Main
+            <MainWrapped
               onChangeCity={onChangeCity}
               offers={offers}
               currentCity={currentCity}
               cities={cities}
               authStatus={authStatus}
               userInfo={userInfo}
+              errorStatus={errorStatus}
+              resetError={resetError}
             />
           )}
         />
@@ -46,8 +61,8 @@ const App: React.FunctionComponent<Props> = ({offers, currentCity, cities, onCha
           path={AppRoute.LOGIN}
           render={() => (
             authStatus === AuthStatus.NO_AUTH
-              ? <SignIn onSubmit={logIn}/>
-              : <Redirect to="/"/>
+              ? <SignInWrapped city={currentCity} onSubmit={logIn} errorStatus={errorStatus} resetError={resetError}/>
+              : <Redirect to={AppRoute.ROOT}/>
           )}
         />
         <Route
@@ -57,8 +72,26 @@ const App: React.FunctionComponent<Props> = ({offers, currentCity, cities, onCha
             const id = parseInt(routeProps.match.params.id, 10);
             const activeOffer = offers.find((item) => item.id === id);
 
-            return <OfferDetails offer={activeOffer} id={id}/>;
+            return (
+              <OfferDetailsWrapped
+                offer={activeOffer}
+                id={id}
+                authStatus={authStatus}
+                userInfo={userInfo}
+                errorStatus={errorStatus}
+                resetError={resetError}
+              />
+            );
           }}
+        />
+        <Route
+          exact
+          path={AppRoute.FAVORITES}
+          render={() => (
+            authStatus === AuthStatus.AUTH
+              ? <FavoritesWrapped authStatus={authStatus} userInfo={userInfo} errorStatus={errorStatus} resetError={resetError}/>
+              : <Redirect to={AppRoute.LOGIN}/>
+          )}
         />
       </Switch>
     </BrowserRouter>
@@ -71,7 +104,10 @@ const mapDispatchToProps = (dispatch) => ({
   },
   logIn(userAuthData) {
     dispatch(UserOperation.logIn(userAuthData));
-  }
+  },
+  resetError() {
+    dispatch(ErrorActionCreator.resetError());
+  },
 });
 
 const mapStateToProps = (state) => ({
@@ -80,6 +116,7 @@ const mapStateToProps = (state) => ({
   cities: getCities(state),
   authStatus: getAuthStatus(state),
   userInfo: getUserInfo(state),
+  errorStatus: getErrorStatus(state),
 });
 
 export {App};

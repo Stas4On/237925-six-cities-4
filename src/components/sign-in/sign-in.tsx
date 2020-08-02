@@ -1,11 +1,13 @@
 import * as React from "react";
 import {RefObject} from "react";
-import {UserAuthenticationData} from "../../models";
+import {UserAuthenticationData} from "../../models/models";
 import {Link} from "react-router-dom";
-import {AppRoute} from "../../constants";
+import {AppRoute} from "../../constants/constants";
+import LocationsItem from "../locations-item/locations-item";
 
 interface Props {
   onSubmit: (userData: UserAuthenticationData) => void;
+  city: string;
 }
 
 class SignIn extends React.PureComponent<Props> {
@@ -38,6 +40,7 @@ class SignIn extends React.PureComponent<Props> {
   }
 
   render() {
+    const {city} = this.props;
     return (
       <div className="page page--gray page--login">
         <header className="header">
@@ -83,11 +86,10 @@ class SignIn extends React.PureComponent<Props> {
               </form>
             </section>
             <section className="locations locations--login locations--current">
-              <div className="locations__item">
-                <a className="locations__item-link" href="#">
-                  <span>Paris</span>
-                </a>
-              </div>
+              <LocationsItem
+                nodeType="div"
+                city={city}
+              />
             </section>
           </div>
         </main>

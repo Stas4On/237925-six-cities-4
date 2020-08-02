@@ -1,8 +1,8 @@
 import * as React from "react";
 import CityMap from "../city-map/city-map";
 import OffersList from "../offers-list/offers-list";
-import {OfferModel} from "../../models";
-import withStatus from "../../hocs/with-status";
+import {OfferCardPrefix, OfferModel} from "../../models/models";
+import withStatus from "../../hocs/with-satatus/with-status";
 import Sort from "../sort/sort";
 
 interface Props {
@@ -24,15 +24,16 @@ const CityPlaces: React.FunctionComponent<Props> = ({currentCity, offers, handle
         <OffersList
           offers={offers}
           handleItemEvent={handleItemEvent}
+          prefix={OfferCardPrefix.CITIES}
         />
       </section>
       <div className="cities__right-section">
         <section className="cities__map map">
-          <CityMap
+          {offers.length && <CityMap
             city={offers[0].city.location}
             offers={offers}
             activeOfferId={activeItemId}
-          />
+          />}
         </section>
       </div>
     </div>

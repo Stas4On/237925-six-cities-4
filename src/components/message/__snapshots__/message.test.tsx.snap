@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Message should render Message correctly 1`] = `
+<section
+  className="message message--error"
+  style={
+    Object {
+      "backgroundColor": "#f47d75",
+      "borderRadius": "0 0 20px 20px",
+      "color": "#ffffff",
+      "display": "flex",
+      "left": 0,
+      "padding": "10px 20px",
+      "position": "fixed",
+      "right": 0,
+      "top": 0,
+      "zIndex": 1000,
+    }
+  }
+>
+  <div
+    className="message__title"
+    style={
+      Object {
+        "marginRight": "20px",
+      }
+    }
+  >
+    <b>
+      400
+      . 
+      Undefined system error.
+    </b>
+  </div>
+  <div
+    className="message__body"
+  >
+    Something went wrong. Please, try again later.
+  </div>
+  <button
+    className="message__button button"
+    onClick={[Function]}
+    style={
+      Object {
+        "backgroundImage": "url(./img/close.svg)",
+        "backgroundPosition": "center",
+        "backgroundRepeat": "no-repeat",
+        "backgroundSize": "20px",
+        "padding": "10px",
+        "position": "absolute",
+        "right": "20px",
+        "top": "8px",
+        "zIndex": 10,
+      }
+    }
+  />
+</section>
+`;
+
+exports[`Message should render Message with 401 status 1`] = `
+<section
+  className="message message--error"
+  style={
+    Object {
+      "backgroundColor": "#f47d75",
+      "borderRadius": "0 0 20px 20px",
+      "color": "#ffffff",
+      "display": "flex",
+      "left": 0,
+      "padding": "10px 20px",
+      "position": "fixed",
+      "right": 0,
+      "top": 0,
+      "zIndex": 1000,
+    }
+  }
+>
+  <div
+    className="message__title"
+    style={
+      Object {
+        "marginRight": "20px",
+      }
+    }
+  >
+    <b>
+      401
+      . 
+      Unauthorized.
+    </b>
+  </div>
+  <div
+    className="message__body"
+  >
+    You are not authorized. Please, Sign in to access your account.
+  </div>
+  <button
+    className="message__button button"
+    onClick={[Function]}
+    style={
+      Object {
+        "backgroundImage": "url(./img/close.svg)",
+        "backgroundPosition": "center",
+        "backgroundRepeat": "no-repeat",
+        "backgroundSize": "20px",
+        "padding": "10px",
+        "position": "absolute",
+        "right": "20px",
+        "top": "8px",
+        "zIndex": 10,
+      }
+    }
+  />
+</section>
+`;

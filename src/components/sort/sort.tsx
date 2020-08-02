@@ -1,7 +1,7 @@
 import * as React from "react";
 import {connect} from "react-redux";
-import {SortTypeNames} from "../../constants";
-import {SortType} from "../../models";
+import {SortTypeNames} from "../../constants/constants";
+import {SortType} from "../../models/models";
 import {getEnumKeys} from "../../common/utils";
 import {ActionCreator} from "../../reducer/city-places/city-places";
 

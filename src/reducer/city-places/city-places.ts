@@ -1,5 +1,5 @@
-import {CITIES} from "../../constants";
-import {SortType} from "../../models";
+import {CITIES} from "../../constants/constants";
+import {SortType} from "../../models/models";
 import {ActionCreatorsMapObject, Reducer} from "redux";
 import {extend} from "../../common/utils";
 import {CityPlacesStore} from "../reduсer.model";
@@ -36,7 +36,7 @@ const reducer: Reducer = (state = initialState, action) => {
       });
     case ActionType.CHANGE_SORT:
       return extend(state, {
-        activeSort: action.payload,
+        activeSort: action.payload
       });
   }
 

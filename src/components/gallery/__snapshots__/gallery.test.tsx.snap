@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Gallery should render Gallery with max count 6 1`] = `
+<div
+  className="property__gallery-container container"
+>
+  <div
+    className="property__gallery"
+  >
+    <div
+      className="property__image-wrapper"
+      style={
+        Object {
+          "width": "259px",
+        }
+      }
+    >
+      <img
+        alt="Interior photo"
+        className="property__image"
+        src="img/room.jpg"
+      />
+    </div>
+    <div
+      className="property__image-wrapper"
+      style={
+        Object {
+          "width": "259px",
+        }
+      }
+    >
+      <img
+        alt="Interior photo"
+        className="property__image"
+        src="img/apartment-03.jpg"
+      />
+    </div>
+    <div
+      className="property__image-wrapper"
+      style={
+        Object {
+          "width": "259px",
+        }
+      }
+    >
+      <img
+        alt="Interior photo"
+        className="property__image"
+        src="img/room.jpg"
+      />
+    </div>
+    <div
+      className="property__image-wrapper"
+      style={
+        Object {
+          "width": "259px",
+        }
+      }
+    >
+      <img
+        alt="Interior photo"
+        className="property__image"
+        src="img/apartment-02.jpg"
+      />
+    </div>
+    <div
+      className="property__image-wrapper"
+      style={
+        Object {
+          "width": "259px",
+        }
+      }
+    >
+      <img
+        alt="Interior photo"
+        className="property__image"
+        src="img/room.jpg"
+      />
+    </div>
+    <div
+      className="property__image-wrapper"
+      style={
+        Object {
+          "width": "259px",
+        }
+      }
+    >
+      <img
+        alt="Interior photo"
+        className="property__image"
+        src="img/apartment-01.jpg"
+      />
+    </div>
+  </div>
+</div>
+`;
