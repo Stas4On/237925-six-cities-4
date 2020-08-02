@@ -7,18 +7,6 @@ export const extend = (a, b) => {
   return Object.assign({}, a, b);
 };
 
-export const noop = () => {
-  // do nothing
-};
-
-export const getCityOffers = (currentCity, offers) => {
-  return offers.filter((offer) => offer.city.name === currentCity);
-};
-export const getCities = (offers) => {
-  const cities = offers.map((offer) => offer.city.name);
-  return Array.from(new Set(cities));
-};
-
 export const getOffersByCity = (offers, city) => {
   return offers.filter((offer) => offer.city.name === city);
 };
@@ -64,17 +52,17 @@ export const mapOfferFromAPI = (offer: OfferServerModel): OfferModel => {
 
 const setLeadingZero = (value) => parseInt(value, 10) > 9 ? `${value}` : `0${value}`;
 
-export const getDatetime = (isoDate) => {
-  const date = new Date(isoDate);
-  const year = date.getFullYear();
-  const month = setLeadingZero(date.getMonth() + 1);
-  const day = setLeadingZero(date.getDate());
-  const hours = setLeadingZero(date.getHours());
-  const minutes = setLeadingZero(date.getMinutes());
+export const getDatetime = (DateString: string) => {
+  const date = new Date(DateString);
+  const year = date.getUTCFullYear();
+  const month = setLeadingZero(date.getUTCMonth() + 1);
+  const day = setLeadingZero(date.getUTCDate());
+  const hours = setLeadingZero(date.getUTCHours());
+  const minutes = setLeadingZero(date.getUTCMinutes());
   return `${year}:${month}:${day}T${hours}:${minutes}`;
 };
 
-export const formatDate = (isoDate) => {
-  const date = new Date(isoDate);
+export const formatDate = (DateString: string) => {
+  const date = new Date(DateString);
   return `${MONTHS[date.getMonth()]} ${date.getFullYear()}`;
 };
