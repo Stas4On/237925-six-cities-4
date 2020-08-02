@@ -1,5 +1,6 @@
 import * as React from "react";
-import {MAX_CITIES_LENGTH} from "../../constants";
+import {MAX_CITIES_LENGTH} from "../../constants/constants";
+import LocationsItem from "../locations-item/locations-item";
 
 interface Props {
   currentCity: string;
@@ -7,22 +8,12 @@ interface Props {
   onChangeCity: (city: string) => void;
 }
 
-const Locations: React.FunctionComponent<Props> = ({onChangeCity, currentCity, cities}) => {
+const Locations: React.FunctionComponent<Props> = ({currentCity, cities}) => {
   return (
     <section className="locations container">
       <ul className="locations__list tabs__list">
-        {cities.map((item, index) => index <= MAX_CITIES_LENGTH && (
-          <li className="locations__item" key={item}>
-            <a
-              className={`${item === currentCity ? `tabs__item--active` : ``} locations__item-link tabs__item`}
-              href="#"
-              onClick={() => {
-                onChangeCity(item);
-              }}
-            >
-              <span>{item}</span>
-            </a>
-          </li>
+        {cities.map((city, index) => index <= MAX_CITIES_LENGTH && (
+          <LocationsItem key={city} city={city} currentCity={currentCity} isNavigation={true} />
         ))}
       </ul>
     </section>

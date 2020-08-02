@@ -1,11 +1,16 @@
 import {createSelector} from "reselect";
-import {SortType} from "../../models";
+import {ReviewModel, SortType} from "../../models/models";
 import {NameSpace} from "../name-space";
 import {getActiveSortType, getCurrentCity} from "../city-places/selectors";
+import {MAX_COMMENTS_COUNT_TO_SHOW} from "../../constants/constants";
 
 const NAME_SPACE = NameSpace.DATA;
 
 export const getOffers = (state) => (state[NAME_SPACE].offers);
+
+export const getNearOffers = (state) => state[NAME_SPACE].nearOffers;
+
+export const getFavoriteOffers = (state) => (state[NAME_SPACE].favoriteOffers);
 
 export const getCityOffers = createSelector(
   getOffers,
@@ -31,4 +36,20 @@ export const getCityOffers = createSelector(
     }
     return result;
   }
+);
+
+export const getRawReviews = (state) => state[NAME_SPACE].reviews;
+
+export const getSortedReviews = createSelector(
+  getRawReviews,
+  (reviews) => reviews.slice().sort((firstComment: ReviewModel, secondComment: ReviewModel) => {
+    const dateA = new Date(firstComment.date).getTime();
+    const dateB = new Date(secondComment.date).getTime();
+    return dateA < dateB ? 1 : -1;
+  })
+);
+
+export const getReviews = createSelector(
+  getSortedReviews,
+  (reviews) => reviews.slice(0, MAX_COMMENTS_COUNT_TO_SHOW)
 );

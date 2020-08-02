@@ -4,17 +4,28 @@ import App from "./components/app/app";
 import {applyMiddleware, createStore} from "redux";
 import {Provider} from "react-redux";
 import {composeWithDevTools} from "redux-devtools-extension";
-import {createAPI} from "./api";
+import {createAPI} from "./api/api";
 import thunk from "redux-thunk";
 import reducer from "./reducer/reducer";
 import {Operation as DataOperation} from "./reducer/data/data";
-import {Operation as UserOperation} from "./reducer/user/user";
-import history from "./history";
-import {Router} from "react-router-dom";
+import {Operation as UserOperation, ActionCreator as UserActionCreator} from "./reducer/user/user";
+import {ActionCreator as ErrorActionCreator} from "./reducer/errors/errors";
+import {AuthStatus} from "./models/models";
+import withMessage from "./hocs/with-message/with-message";
 
 const init = () => {
-  const api = createAPI(() => { /* do nothing */
-  });
+  const AppWrapped = withMessage(App);
+
+  const onUnauthorized = (status: number) => {
+    store.dispatch(UserActionCreator.changeAuthStatus(AuthStatus.NO_AUTH));
+    store.dispatch(ErrorActionCreator.setErrorStatus(status));
+  };
+
+  const onRequestError = (status: number) => {
+    store.dispatch(ErrorActionCreator.setErrorStatus(status));
+  };
+
+  const api = createAPI(onUnauthorized, onRequestError);
   const store = createStore(
       reducer,
       composeWithDevTools(
@@ -28,9 +39,7 @@ const init = () => {
     .then(() => {
       ReactDOM.render(
           <Provider store={store}>
-            <Router history={history}>
-              <App/>
-            </Router>
+            <AppWrapped/>
           </Provider>,
           document.getElementById(`root`)
       );

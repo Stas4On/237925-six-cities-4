@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack-dev-server",
-    "eslint": "npm run eslint.js && npm run eslint.ts",
+    "eslint": "npm run eslint.ts",
     "eslint.js": "eslint --ext .jsx --ext .js src/",
     "eslint.ts": "eslint --config .eslintrc-ts.yml --ext .tsx src/",
     "test.jest": "jest",
@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "axios": "0.19.2",
-    "history": "5.0.0",
+    "history": "4.10.1",
     "leaflet": "1.6.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",

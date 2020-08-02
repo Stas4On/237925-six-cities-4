@@ -1,8 +1,9 @@
-import {AuthStatus, UserAuthenticationData} from "../../models";
+import {AuthStatus, UserAuthenticationData} from "../../models/models";
 import {ActionCreatorsMapObject, Reducer} from "redux";
 import {extend} from "../../common/utils";
 import {AxiosInstance} from "axios";
 import {UserStore} from "../reduсer.model";
+import {ActionCreator as ErrorsActionCreator} from "../errors/errors"
 
 const initialState: UserStore = {
   authStatus: AuthStatus.NO_AUTH,
@@ -28,6 +29,7 @@ const ActionCreator: ActionCreatorsMapObject = {
 const onUserOperationSuccess = (user, dispatch) => {
   dispatch(ActionCreator.changeAuthStatus(AuthStatus.AUTH))
   dispatch(ActionCreator.userInfo(user))
+  dispatch(ErrorsActionCreator.resetError())
 };
 
 const Operation = {

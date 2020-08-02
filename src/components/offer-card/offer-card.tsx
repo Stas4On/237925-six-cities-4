@@ -1,28 +1,33 @@
 import * as React from "react";
 import {connect} from 'react-redux';
-import {AuthStatus, OfferModel} from "../../models";
-import {AppRoute, OfferTypeNames} from "../../constants";
+import {AuthStatus, OfferCardPrefix, OfferModel} from "../../models/models";
+import {AppRoute, OfferTypeNames} from "../../constants/constants";
 import {Link} from "react-router-dom";
 import {Operation as DataOperation} from '../../reducer/data/data';
 import {getAuthStatus} from "../../reducer/user/selectors";
-import history from "../../history";
+import {getRoundedPercentageRating} from "../../common/utils";
 
 interface Props {
   offerCard: OfferModel;
   onFocus: (offerId) => void;
   onFavoriteClick: (id: number, isFavorite: boolean) => void;
   authStatus: AuthStatus;
+  prefix: OfferCardPrefix;
 }
 
 class OfferCard extends React.PureComponent<Props> {
+  props: Props;
+
   constructor(props: Props) {
     super(props);
     this._handleFocus = this._handleFocus.bind(this);
     this._handleBookmarksButtonClick = this._handleBookmarksButtonClick.bind(this);
   }
 
-  private _handleFocus(offerId) {
-    this.props.onFocus(offerId);
+  private _handleFocus(offerId, prefix) {
+    if (prefix === OfferCardPrefix.CITIES) {
+      this.props.onFocus(offerId);
+    }
   }
 
   private _handleBookmarksButtonClick(id, isFavorite) {
@@ -30,22 +35,24 @@ class OfferCard extends React.PureComponent<Props> {
 
     if (authStatus === AuthStatus.AUTH) {
       onFavoriteClick(id, isFavorite);
-    } else {
-      history.push(AppRoute.LOGIN);
     }
   }
 
   render() {
-    const {offerCard: card, onFavoriteClick, authStatus} = this.props;
+    const {offerCard: card, onFavoriteClick, authStatus, prefix} = this.props;
     const favoriteClass = card.favorite ? `place-card__bookmark-button--active` : ``;
+    const cardClass = prefix === OfferCardPrefix.CITIES ? `cities__place-card` : `${prefix}__card`;
 
     return (
-      <article className="cities__place-card place-card" onMouseEnter={() => this._handleFocus(card.id)} onMouseLeave={() => this._handleFocus(null)}>
+      <article className={`${cardClass} place-card`} onMouseEnter={() => this._handleFocus(card.id, prefix)} onMouseLeave={() => this._handleFocus(null, prefix)}>
         {this.addPremiumLabel(card.premium)}
-        <div className="cities__image-wrapper place-card__image-wrapper">
-          <a href="#">
-            <img className="place-card__image" src={card.imgUrl} width={260} height={200} alt="Place image"/>
-          </a>
+        <div className={`${prefix}__image-wrapper place-card__image-wrapper`}>
+          <img
+            className="place-card__image"
+            src={card.img_url}
+            width={prefix === `favorites` ? 150 : 260}
+            height={prefix === `favorites` ? 110 : 200}
+            alt="Place image"/>
         </div>
         <div className="place-card__info">
           <div className="place-card__price-wrapper">
@@ -78,7 +85,7 @@ class OfferCard extends React.PureComponent<Props> {
           </div>
           <div className="place-card__rating rating">
             <div className="place-card__stars rating__stars">
-              <span style={{width: Math.round(card.rating) * 20 + `%`}}/>
+              <span style={{width: getRoundedPercentageRating(card.rating)}}/>
               <span className="visually-hidden">Rating</span>
             </div>
           </div>
